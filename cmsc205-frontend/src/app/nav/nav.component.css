@@ -10,7 +10,10 @@
   background-color: blueviolet;
   height: 90px;
   width: 90px;
+
   display: flex;
+  justify-content: center;
+  align-items: center;
 
   margin: 10px;
   padding: 0;
