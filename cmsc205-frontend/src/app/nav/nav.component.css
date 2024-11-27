@@ -5,3 +5,14 @@
   flex-direction: column;
   align-items: center;
 }
+
+.links-container {
+  background-color: blueviolet;
+  height: 90px;
+  width: 90px;
+  display: flex;
+
+  margin: 10px;
+  padding: 0;
+}
+
