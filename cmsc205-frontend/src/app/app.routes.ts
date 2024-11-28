@@ -6,6 +6,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 export const routes: Routes = [
+  { path: 'welcome', loadChildren: () => import('./pages/welcome/welcome.routes').then(m => m.WELCOME_ROUTES) },
   { path: '', component: HomePageComponent, title: 'Home',
     children: [
       { path: '', component: MapPageComponent, title: 'Map'},
@@ -16,4 +17,6 @@ export const routes: Routes = [
   {
     path: 'login', component: LoginPageComponent, title: 'Login'
   }
+
 ];
+
