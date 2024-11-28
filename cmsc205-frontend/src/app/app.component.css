@@ -1,4 +1,14 @@
-:host {
+.app-content {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+/* :host {
   display: flex;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -77,4 +87,4 @@ nz-content {
   padding: 24px;
   background: #fff;
   height: 100%;
-}
+} */
