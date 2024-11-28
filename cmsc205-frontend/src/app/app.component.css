@@ -1,18 +1,9 @@
 .content{
-  background-color: yellow;
+  background-color: white;
   width: 100vw;
   height: 100vh;
   display: flex;
-  flex-direction: row;
   justify-content: center;
+  align-items: center;
 
-}
-
-.left-side{
-  background-color: green;
-}
-
-.right-side{
-  background-color: red;
-  width: 100%;
 }

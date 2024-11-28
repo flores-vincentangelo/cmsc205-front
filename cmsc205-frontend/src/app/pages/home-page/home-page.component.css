@@ -1,0 +1,18 @@
+.content{
+  background-color: yellow;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+
+.left-side{
+  background-color: green;
+}
+
+.right-side{
+  background-color: red;
+  width: 100%;
+}

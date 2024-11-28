@@ -1,0 +1,6 @@
+.nav-container {
+  background-color: orange;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
