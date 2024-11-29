@@ -1,6 +1,27 @@
 .nav-container {
-  background-color: orange;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.title {
+  font-size: 90px;
+
+  margin-bottom: 50px;
+}
+
+.login-form {
+  max-width: 300px;
+}
+
+.login-form-margin {
+  margin-bottom: 16px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
 }
