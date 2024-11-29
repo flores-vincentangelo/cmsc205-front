@@ -18,6 +18,8 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 
 import { TitleComponent } from '../../components/title/title.component';
 
+import { RegisterService } from '../../services/register.service';
+
 @Component({
   selector: 'app-register-page',
   standalone: true,
@@ -31,6 +33,8 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
   formControlSm: number = 14;
   registerOffset: number = 0
   private destroy$ = new Subject<void>();
+  private registerService = inject(RegisterService)
+
   private fb = inject(NonNullableFormBuilder);
   validateForm = this.fb.group({
     email: this.fb.control('', [Validators.email, Validators.required]),
@@ -65,7 +69,8 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
+      const res = this.registerService.register(this.validateForm.value);
+
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
