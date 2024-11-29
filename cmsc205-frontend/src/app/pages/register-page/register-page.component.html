@@ -18,7 +18,7 @@
       <nz-form-control [nzSm]="formControlSm" [nzXs]="formLabelXs" [nzErrorTip]="errorTpl">
         <input nz-input type="password" formControlName="checkPassword" id="checkPassword" />
         <ng-template #errorTpl let-control>
-          @if (control.errors?.['required']) {
+          @if (validateForm.controls['checkPassword'].errors?.['required']) {
             Please confirm your password!
           }
           @if (control.errors?.['confirm']) {

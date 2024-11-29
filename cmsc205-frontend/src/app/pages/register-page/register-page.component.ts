@@ -4,14 +4,15 @@ import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
   ValidationErrors,
-  Validators
+  Validators,
+  ValidatorFn
 } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
-import { NzFormModule, NzFormTooltipIcon } from 'ng-zorro-antd/form';
+import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 
@@ -25,29 +26,23 @@ import { TitleComponent } from '../../components/title/title.component';
   styleUrls: ['./register-page.component.css']
 })
 export class RegisterPageComponent implements OnInit, OnDestroy {
-  private destroy$ = new Subject<void>();
-  private fb: NonNullableFormBuilder = inject(NonNullableFormBuilder)
-
   formLabelSm: number = 10;
   formLabelXs: number = 24;
   formControlSm: number = 14;
   registerOffset: number = 0
-
-  public screenWidth: any;
-  public screenHeight: any;
-
+  private destroy$ = new Subject<void>();
+  private fb = inject(NonNullableFormBuilder);
   validateForm = this.fb.group({
     email: this.fb.control('', [Validators.email, Validators.required]),
     password: this.fb.control('', [Validators.required]),
-    checkPassword: this.fb.control('', [Validators.required, this.confirmationValidator]),
+    checkPassword: this.fb.control('', [Validators.required, this.passwordMatchValidator()]),
     firstname: this.fb.control('', [Validators.required]),
     lastname: this.fb.control('', [Validators.required]),
     agree: this.fb.control(false)
   });
-  captchaTooltipIcon: NzFormTooltipIcon = {
-    type: 'info-circle',
-    theme: 'twotone'
-  };
+
+  public screenWidth: any;
+  public screenHeight: any;
 
   constructor() {
   }
@@ -56,11 +51,10 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.screenWidth = window.innerWidth -1;
     this.screenHeight = window.innerHeight;
-
     this.registerOffset = this.screenWidth >= 576 ? this.formLabelSm : 0;
 
-    this.validateForm.controls.password.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      this.validateForm.controls.checkPassword.updateValueAndValidity();
+    this.validateForm.controls['password'].valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
+      this.validateForm.controls['checkPassword'].updateValueAndValidity();
     });
   }
 
@@ -82,16 +76,15 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  confirmationValidator(control: AbstractControl): ValidationErrors | null {
-    if (!control.value) {
-      return { required: true };
-    } else if (control.value !== this.validateForm.controls.password.value) {
-      return { confirm: true, error: true };
+  passwordMatchValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (!control.value) {
+        return { required: true };
+      } else if (control.value !== this.validateForm.controls['password'].value) {
+        return { confirm: true, error: true };
+      }
+      return {};
     }
-    return {};
-  }
-
-  getCaptcha(e: MouseEvent): void {
-    e.preventDefault();
   }
 }
+
