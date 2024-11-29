@@ -4,6 +4,7 @@ import { KnowledgePageComponent } from './pages/knowledge-page/knowledge-page.co
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/map' },
@@ -17,6 +18,9 @@ export const routes: Routes = [
   },
   {
     path: 'login', component: LoginPageComponent, title: 'Login'
+  },
+  {
+    path: 'register', component: RegisterPageComponent, title: 'Register'
   }
 
 ];

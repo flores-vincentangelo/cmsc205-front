@@ -1,4 +1,4 @@
-<div class="nav-container">
+<div class="login-container">
   <div class="title">BantayTubig</div>
   <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
     <nz-form-item>
@@ -27,6 +27,6 @@
     </div>
     <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
     Or
-    <a>register now!</a>
+    <a [routerLink]="['/register']">register now!</a>
   </form>
 </div>

@@ -5,3 +5,12 @@ body {
   margin: 0;
   padding: 0;
 }
+
+:root {
+  --primary-blue: #0077b6;
+  --secondary-blue: #023047;
+  --white: #F2F4F3;
+  --green: #A7C957;
+  --yellow: #FCBF49;
+  --red: #D62828;
+}
