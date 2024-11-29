@@ -21,7 +21,7 @@ export class LoginPageComponent {
   private fb: NonNullableFormBuilder = inject(NonNullableFormBuilder)
 
   validateForm = this.fb.group({
-    username: this.fb.control('', [Validators.required]),
+    email: this.fb.control('', [Validators.required, Validators.email]),
     password: this.fb.control('', [Validators.required]),
     remember: this.fb.control(true)
   });
