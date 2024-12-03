@@ -15,6 +15,8 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 
+import { SessionService } from '../../services/session.service';
+
 @Component({
   standalone: true,
   selector: 'app-profile-page',
@@ -23,6 +25,9 @@ import { NzInputModule } from 'ng-zorro-antd/input';
   styleUrl: './profile-page.component.css'
 })
 export class ProfilePageComponent {
+
+  ss = inject(SessionService)
+  fullname = this.ss.getFullname()
 
   formLabelSm: number = 10;
   formLabelXs: number = 24;
@@ -74,7 +79,7 @@ export class ProfilePageComponent {
   submitForm(): void {
     if (this.validateForm.valid) {
       console.log(this.validateForm.value)
-
+      this.validateForm.reset()
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {

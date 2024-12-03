@@ -3,7 +3,7 @@
     Profile
   </div>
   <div>
-    welcome logged in user
+    welcome {{fullname}}
   </div>
   <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
     <nz-form-item>
@@ -27,7 +27,7 @@
             Please confirm your password!
           }
           @if (control.errors?.['confirm']) {
-            Two passwords that you enter is inconsistent!
+            The two passwords don't match!
           }
         </ng-template>
       </nz-form-control>
