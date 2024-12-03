@@ -1,1 +1,68 @@
-<p>profile-page works!</p>
+<div class="profile-container">
+  <div>
+    Profile
+  </div>
+  <div>
+    welcome logged in user
+  </div>
+  <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-label nz-form-label [nzSm]="formLabelSm" [nzXs]="formLabelXs" nzRequired nzFor="email">E-mail</nz-form-label>
+      <nz-form-control [nzSm]="formControlSm" [nzXs]="formLabelXs" nzErrorTip="The input is not valid E-mail!">
+        <input nz-input formControlName="email" id="email" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nz-form-label [nzSm]="formLabelSm" [nzXs]="formLabelXs" nzFor="password" nzRequired>Password</nz-form-label>
+      <nz-form-control [nzSm]="formControlSm" [nzXs]="formLabelXs" nzErrorTip="Please input your password!">
+        <input nz-input type="password" id="password" formControlName="password" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nz-form-label [nzSm]="formLabelSm" [nzXs]="formLabelXs" nzFor="checkPassword" nzRequired>Confirm Password</nz-form-label>
+      <nz-form-control [nzSm]="formControlSm" [nzXs]="formLabelXs" [nzErrorTip]="errorTpl">
+        <input nz-input type="password" formControlName="checkPassword" id="checkPassword" />
+        <ng-template #errorTpl let-control>
+          @if (validateForm.controls['checkPassword'].errors?.['required']) {
+            Please confirm your password!
+          }
+          @if (control.errors?.['confirm']) {
+            Two passwords that you enter is inconsistent!
+          }
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        nz-form-label [nzSm]="formLabelSm"
+        [nzXs]="formLabelXs"
+        nzFor="firstname"
+        nzRequired
+      >
+        <span>First Name</span>
+      </nz-form-label>
+      <nz-form-control [nzSm]="formControlSm" [nzXs]="formLabelXs" nzErrorTip="Please input your first name!">
+        <input nz-input id="firstname" formControlName="firstname" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        nz-form-label [nzSm]="formLabelSm"
+        [nzXs]="formLabelXs"
+        nzFor="lastname"
+        nzRequired
+      >
+        <span>Last Name</span>
+      </nz-form-label>
+      <nz-form-control [nzSm]="formControlSm" [nzXs]="formLabelXs" nzErrorTip="Please input your lastname!">
+        <input nz-input id="lastname" formControlName="lastname" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item nz-row class="register-area">
+      <nz-form-control [nzSpan]="100" [nzOffset]="registerOffset">
+        <button nz-button nzType="primary">Update</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+</div>
