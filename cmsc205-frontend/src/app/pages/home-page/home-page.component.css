@@ -15,6 +15,11 @@
   z-index: 10;
   min-height: 100vh;
   box-shadow: 2px 0 6px rgba(0,21,41,.35);
+  background-color: var(--white);
+}
+
+.menu-sidebar ul{
+  background-color: var(--white);
 }
 
 .header-trigger {
@@ -35,7 +40,7 @@
   padding-left: 24px;
   overflow: hidden;
   line-height: 64px;
-  background: #001529;
+  background: var(--white);
   transition: all .3s;
 }
 
@@ -49,9 +54,9 @@
 .sidebar-logo h1 {
   display: inline-block;
   margin: 0 0 0 20px;
-  color: #fff;
+  color: var(--primary-blue);
   font-weight: 600;
-  font-size: 14px;
+  font-size: 20px;
   font-family: Avenir,Helvetica Neue,Arial,Helvetica,sans-serif;
   vertical-align: middle;
 }
