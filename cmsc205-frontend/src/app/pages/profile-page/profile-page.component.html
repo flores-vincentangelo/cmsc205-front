@@ -7,21 +7,21 @@
   </div>
   <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
     <nz-form-item>
-      <nz-form-label nz-form-label [nzSm]="formLabelSm" [nzXs]="formLabelXs" nzRequired nzFor="email">E-mail</nz-form-label>
+      <nz-form-label nz-form-label [nzSm]="formLabelSm" [nzXs]="formLabelXs" nzFor="email">E-mail</nz-form-label>
       <nz-form-control [nzSm]="formControlSm" [nzXs]="formLabelXs" nzErrorTip="The input is not valid E-mail!">
         <input nz-input formControlName="email" id="email" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label nz-form-label [nzSm]="formLabelSm" [nzXs]="formLabelXs" nzFor="password" nzRequired>Password</nz-form-label>
-      <nz-form-control [nzSm]="formControlSm" [nzXs]="formLabelXs" nzErrorTip="Please input your password!">
+      <nz-form-label nz-form-label [nzSm]="formLabelSm" [nzXs]="formLabelXs" nzFor="password" >Password</nz-form-label>
+      <nz-form-control [nzSm]="formControlSm" [nzXs]="formLabelXs">
         <input nz-input type="password" id="password" formControlName="password" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label nz-form-label [nzSm]="formLabelSm" [nzXs]="formLabelXs" nzFor="checkPassword" nzRequired>Confirm Password</nz-form-label>
+      <nz-form-label nz-form-label [nzSm]="formLabelSm" [nzXs]="formLabelXs" nzFor="checkPassword" >Confirm Password</nz-form-label>
       <nz-form-control [nzSm]="formControlSm" [nzXs]="formLabelXs" [nzErrorTip]="errorTpl">
-        <input nz-input type="password" formControlName="checkPassword" id="checkPassword" />
+        <input [disabled]="true" nz-input type="password" formControlName="checkPassword" id="checkPassword" />
         <ng-template #errorTpl let-control>
           @if (validateForm.controls['checkPassword'].errors?.['required']) {
             Please confirm your password!
@@ -37,7 +37,7 @@
         nz-form-label [nzSm]="formLabelSm"
         [nzXs]="formLabelXs"
         nzFor="firstname"
-        nzRequired
+
       >
         <span>First Name</span>
       </nz-form-label>
@@ -50,7 +50,7 @@
         nz-form-label [nzSm]="formLabelSm"
         [nzXs]="formLabelXs"
         nzFor="lastname"
-        nzRequired
+
       >
         <span>Last Name</span>
       </nz-form-label>
@@ -64,5 +64,8 @@
       </nz-form-control>
     </nz-form-item>
   </form>
+  <div class="signout-container">
+    <button nz-button nzType="primary">Sign out</button>
+  </div>
 
 </div>

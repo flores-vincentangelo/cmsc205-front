@@ -32,11 +32,11 @@ export class ProfilePageComponent {
 
   private fb = inject(NonNullableFormBuilder);
   validateForm = this.fb.group({
-    email: this.fb.control('', [Validators.email, Validators.required]),
-    password: this.fb.control('', [Validators.required]),
-    checkPassword: this.fb.control('', [Validators.required, this.passwordMatchValidator()]),
-    firstname: this.fb.control('', [Validators.required]),
-    lastname: this.fb.control('', [Validators.required]),
+    email: this.fb.control('', [Validators.email, ]),
+    password: this.fb.control('', []),
+    checkPassword: this.fb.control('', [this.passwordMatchValidator(), Validators.required]),
+    firstname: this.fb.control('', []),
+    lastname: this.fb.control('', []),
     agree: this.fb.control(false)
   });
 
@@ -52,8 +52,17 @@ export class ProfilePageComponent {
     this.screenHeight = window.innerHeight;
     this.registerOffset = this.screenWidth >= 576 ? this.formLabelSm : 0;
 
+    this.validateForm.controls['checkPassword'].disable();
+
     this.validateForm.controls['password'].valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      this.validateForm.controls['checkPassword'].updateValueAndValidity();
+      const passHasValue = this.validateForm.controls['password'].value
+
+      if (passHasValue) {
+        this.validateForm.controls['checkPassword'].enable();
+        this.validateForm.controls['checkPassword'].updateValueAndValidity();
+      } else {
+        this.validateForm.controls['checkPassword'].disable();
+      }
     });
   }
 
