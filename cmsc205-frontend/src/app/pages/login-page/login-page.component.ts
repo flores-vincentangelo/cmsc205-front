@@ -6,6 +6,8 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { TitleComponent } from '../../components/title/title.component';
+import { LoginService } from '../../services/login.service';
+
 @Component({
   standalone: true,
   selector: 'app-login-page',
@@ -15,6 +17,7 @@ import { TitleComponent } from '../../components/title/title.component';
 })
 export class LoginPageComponent {
 
+  loginService = inject(LoginService)
   constructor() {
   }
 
@@ -28,7 +31,7 @@ export class LoginPageComponent {
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
+      this.loginService.postLogin(this.validateForm.controls['email'].value, this.validateForm.controls['password'].value)
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {

@@ -19,6 +19,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { TitleComponent } from '../../components/title/title.component';
 
 import { RegisterService } from '../../services/register.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-page',
@@ -28,6 +29,8 @@ import { RegisterService } from '../../services/register.service';
   styleUrls: ['./register-page.component.css']
 })
 export class RegisterPageComponent implements OnInit, OnDestroy {
+  router = inject(Router)
+
   formLabelSm: number = 10;
   formLabelXs: number = 24;
   formControlSm: number = 14;

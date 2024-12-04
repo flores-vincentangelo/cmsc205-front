@@ -1,3 +1,7 @@
+.form-container {
+  background-color: red;
+}
+
 .formcontrol{
   background-color: red;
   display: flex;

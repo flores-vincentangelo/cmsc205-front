@@ -16,6 +16,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 
 import { SessionService } from '../../services/session.service';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -26,6 +27,7 @@ import { SessionService } from '../../services/session.service';
 })
 export class ProfilePageComponent {
 
+  router = inject(Router)
   ss = inject(SessionService)
   fullname = this.ss.getFullname()
 
@@ -99,5 +101,10 @@ export class ProfilePageComponent {
       }
       return {};
     }
+  }
+
+  signOut(): void {
+    console.log("clicked")
+    this.router.navigate(['login'])
   }
 }

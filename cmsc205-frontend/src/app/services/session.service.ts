@@ -20,4 +20,12 @@ export class SessionService {
   getLastname() {
     return this.lastname()
   }
+
+  updateFirstName(firstname: string){
+    this.firstname.set(firstname)
+  }
+
+  updateLastname(lastname: string){
+    this.lastname.set(lastname)
+  }
 }
