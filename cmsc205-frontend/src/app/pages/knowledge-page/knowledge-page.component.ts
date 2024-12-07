@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   selector: 'app-knowledge-page',
   imports: [],
   templateUrl: './knowledge-page.component.html',
-  styleUrl: './knowledge-page.component.css'
+  styleUrl: './knowledge-page.component.css',
 })
-export class KnowledgePageComponent {
-
-}
+export class KnowledgePageComponent {}

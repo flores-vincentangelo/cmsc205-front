@@ -6,8 +6,6 @@ import { RouterModule } from '@angular/router';
   selector: 'app-nav',
   imports: [RouterModule],
   templateUrl: './nav.component.html',
-  styleUrl: './nav.component.css'
+  styleUrl: './nav.component.css',
 })
-export class NavComponent {
-
-}
+export class NavComponent {}

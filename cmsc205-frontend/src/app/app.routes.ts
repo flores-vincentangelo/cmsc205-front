@@ -8,20 +8,33 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/map' },
-  { path: 'welcome', loadChildren: () => import('./pages/welcome/welcome.routes').then(m => m.WELCOME_ROUTES) },
-  { path: '', component: HomePageComponent, title: 'Home',
+  {
+    path: 'welcome',
+    loadChildren: () =>
+      import('./pages/welcome/welcome.routes').then((m) => m.WELCOME_ROUTES),
+  },
+  {
+    path: '',
+    component: HomePageComponent,
+    title: 'Home',
     children: [
-      { path: 'map', component: MapPageComponent, title: 'Map'},
-      { path: 'knowledge', component: KnowledgePageComponent, title: 'Knowledge'},
-      { path: 'profile', component: ProfilePageComponent, title: 'Profile'},
-    ]
+      { path: 'map', component: MapPageComponent, title: 'Map' },
+      {
+        path: 'knowledge',
+        component: KnowledgePageComponent,
+        title: 'Knowledge',
+      },
+      { path: 'profile', component: ProfilePageComponent, title: 'Profile' },
+    ],
   },
   {
-    path: 'login', component: LoginPageComponent, title: 'Login'
+    path: 'login',
+    component: LoginPageComponent,
+    title: 'Login',
   },
   {
-    path: 'register', component: RegisterPageComponent, title: 'Register'
-  }
-
+    path: 'register',
+    component: RegisterPageComponent,
+    title: 'Register',
+  },
 ];
-

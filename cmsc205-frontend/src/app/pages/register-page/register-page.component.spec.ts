@@ -7,9 +7,8 @@ describe('RegisterPageComponent', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterPageComponent ]
-    })
-    .compileComponents();
+      declarations: [RegisterPageComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(RegisterPageComponent);
     component = fixture.componentInstance;

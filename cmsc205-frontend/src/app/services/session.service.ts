@@ -1,31 +1,31 @@
 import { Injectable, signal } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SessionService {
-  firstname = signal('firstname')
-  lastname = signal('lastname')
+  firstname = signal('firstname');
+  lastname = signal('lastname');
 
-  constructor() { }
+  constructor() {}
 
   getFullname() {
-    return `${this.firstname()} ${this.lastname()}`
+    return `${this.firstname()} ${this.lastname()}`;
   }
 
-  getFirstname(){
-    return this.firstname()
+  getFirstname() {
+    return this.firstname();
   }
 
   getLastname() {
-    return this.lastname()
+    return this.lastname();
   }
 
-  updateFirstName(firstname: string){
-    this.firstname.set(firstname)
+  updateFirstName(firstname: string) {
+    this.firstname.set(firstname);
   }
 
-  updateLastname(lastname: string){
-    this.lastname.set(lastname)
+  updateLastname(lastname: string) {
+    this.lastname.set(lastname);
   }
 }

@@ -8,9 +8,16 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 @Component({
   standalone: true,
   selector: 'app-home-page',
-  imports: [CommonModule, RouterLink, RouterOutlet, NzIconModule, NzLayoutModule, NzMenuModule],
+  imports: [
+    CommonModule,
+    RouterLink,
+    RouterOutlet,
+    NzIconModule,
+    NzLayoutModule,
+    NzMenuModule,
+  ],
   templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.css'
+  styleUrl: './home-page.component.css',
 })
 export class HomePageComponent {
   isCollapsed = false;

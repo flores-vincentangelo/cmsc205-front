@@ -1,6 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  NonNullableFormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -11,29 +15,38 @@ import { LoginService } from '../../services/login.service';
 @Component({
   standalone: true,
   selector: 'app-login-page',
-  imports: [ReactiveFormsModule, NzFormModule, NzInputModule, NzButtonModule, NzCheckboxModule, RouterLink, TitleComponent],
+  imports: [
+    ReactiveFormsModule,
+    NzFormModule,
+    NzInputModule,
+    NzButtonModule,
+    NzCheckboxModule,
+    RouterLink,
+    TitleComponent,
+  ],
   templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.css'
+  styleUrl: './login-page.component.css',
 })
 export class LoginPageComponent {
+  loginService = inject(LoginService);
+  constructor() {}
 
-  loginService = inject(LoginService)
-  constructor() {
-  }
-
-  private fb: NonNullableFormBuilder = inject(NonNullableFormBuilder)
+  private fb: NonNullableFormBuilder = inject(NonNullableFormBuilder);
 
   validateForm = this.fb.group({
     email: this.fb.control('', [Validators.required, Validators.email]),
     password: this.fb.control('', [Validators.required]),
-    remember: this.fb.control(true)
+    remember: this.fb.control(true),
   });
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      this.loginService.postLogin(this.validateForm.controls['email'].value, this.validateForm.controls['password'].value)
+      this.loginService.postLogin(
+        this.validateForm.controls['email'].value,
+        this.validateForm.controls['password'].value,
+      );
     } else {
-      Object.values(this.validateForm.controls).forEach(control => {
+      Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });

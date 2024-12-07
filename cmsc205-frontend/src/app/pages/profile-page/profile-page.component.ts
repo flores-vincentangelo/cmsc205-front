@@ -5,7 +5,7 @@ import {
   ReactiveFormsModule,
   ValidationErrors,
   Validators,
-  ValidatorFn
+  ValidatorFn,
 } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -21,56 +21,64 @@ import { Router } from '@angular/router';
 @Component({
   standalone: true,
   selector: 'app-profile-page',
-  imports: [ReactiveFormsModule, NzButtonModule, NzCheckboxModule, NzFormModule, NzInputModule],
+  imports: [
+    ReactiveFormsModule,
+    NzButtonModule,
+    NzCheckboxModule,
+    NzFormModule,
+    NzInputModule,
+  ],
   templateUrl: './profile-page.component.html',
-  styleUrl: './profile-page.component.css'
+  styleUrl: './profile-page.component.css',
 })
 export class ProfilePageComponent {
-
-  router = inject(Router)
-  ss = inject(SessionService)
-  fullname = this.ss.getFullname()
+  router = inject(Router);
+  ss = inject(SessionService);
+  fullname = this.ss.getFullname();
 
   formLabelSm: number = 10;
   formLabelXs: number = 24;
   formControlSm: number = 14;
-  registerOffset: number = 0
+  registerOffset: number = 0;
   private destroy$ = new Subject<void>();
 
   private fb = inject(NonNullableFormBuilder);
   validateForm = this.fb.group({
-    email: this.fb.control('', [Validators.email, ]),
+    email: this.fb.control('', [Validators.email]),
     password: this.fb.control('', []),
-    checkPassword: this.fb.control('', [this.passwordMatchValidator(), Validators.required]),
+    checkPassword: this.fb.control('', [
+      this.passwordMatchValidator(),
+      Validators.required,
+    ]),
     firstname: this.fb.control('', []),
     lastname: this.fb.control('', []),
-    agree: this.fb.control(false)
+    agree: this.fb.control(false),
   });
 
   public screenWidth: any;
   public screenHeight: any;
 
-  constructor() {
-  }
-
+  constructor() {}
 
   ngOnInit(): void {
-    this.screenWidth = window.innerWidth -1;
+    this.screenWidth = window.innerWidth - 1;
     this.screenHeight = window.innerHeight;
     this.registerOffset = this.screenWidth >= 576 ? this.formLabelSm : 0;
 
     this.validateForm.controls['checkPassword'].disable();
 
-    this.validateForm.controls['password'].valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      const passHasValue = this.validateForm.controls['password'].value
+    this.validateForm.controls['password'].valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        const passHasValue = this.validateForm.controls['password'].value;
 
-      if (passHasValue) {
-        this.validateForm.controls['checkPassword'].enable();
-        this.validateForm.controls['checkPassword'].updateValueAndValidity();
-      } else {
-        this.validateForm.controls['checkPassword'].disable();
-      }
-    });
+        if (passHasValue) {
+          this.validateForm.controls['checkPassword'].enable();
+          this.validateForm.controls['checkPassword'].updateValueAndValidity();
+        } else {
+          this.validateForm.controls['checkPassword'].disable();
+        }
+      });
   }
 
   ngOnDestroy(): void {
@@ -80,10 +88,10 @@ export class ProfilePageComponent {
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      console.log(this.validateForm.value)
-      this.validateForm.reset()
+      console.log(this.validateForm.value);
+      this.validateForm.reset();
     } else {
-      Object.values(this.validateForm.controls).forEach(control => {
+      Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });
@@ -96,15 +104,17 @@ export class ProfilePageComponent {
     return (control: AbstractControl): ValidationErrors | null => {
       if (!control.value) {
         return { required: true };
-      } else if (control.value !== this.validateForm.controls['password'].value) {
+      } else if (
+        control.value !== this.validateForm.controls['password'].value
+      ) {
         return { confirm: true, error: true };
       }
       return {};
-    }
+    };
   }
 
   signOut(): void {
-    console.log("clicked")
-    this.router.navigate(['login'])
+    console.log('clicked');
+    this.router.navigate(['login']);
   }
 }
