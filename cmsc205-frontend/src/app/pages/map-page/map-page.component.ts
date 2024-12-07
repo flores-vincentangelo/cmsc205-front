@@ -1,12 +1,12 @@
 import { CommonModule, JsonPipe } from '@angular/common';
 import { Component, inject, ViewChild } from '@angular/core';
-import { GoogleMap, MapMarker } from '@angular/google-maps';
+import { GoogleMap, MapMarker, MapAdvancedMarker } from '@angular/google-maps';
 import { LocationService } from '../../services/location.service';
 
 @Component({
   standalone: true,
   selector: 'app-map-page',
-  imports: [CommonModule, GoogleMap, MapMarker, JsonPipe],
+  imports: [CommonModule, GoogleMap, MapAdvancedMarker, JsonPipe],
   templateUrl: './map-page.component.html',
   styleUrl: './map-page.component.css',
 })
@@ -16,29 +16,23 @@ export class MapPageComponent {
   ls = inject(LocationService);
 
   display: google.maps.LatLngLiteral = { lat: 0, lng: 0 };
-  marker = {
-    position: { lat: 14.636367, lng: 121.037782 },
-  };
   mapOptions: google.maps.MapOptions = {
     disableDefaultUI: true,
   };
-  markerOptions: google.maps.marker.AdvancedMarkerElementOptions = { gmpDraggable: false };
+  markerOptions: google.maps.marker.AdvancedMarkerElementOptions = { gmpDraggable: false, gmpClickable: true };
   center: google.maps.LatLngLiteral = { lat: 40.73061, lng: -73.935242 };
-  zoom = 1;
+  zoom = 15;
 
   markerPositions: google.maps.LatLngLiteral[] = [];
 
   ngOnInit(): void {
-    this.ls.getLocation();
-    this.ls.currentLoc$.subscribe((value) => {
+    this.ls.getCurrentLocation();
+    this.ls.loc$.subscribe((value) => {
       this.center = { lat: value.lat, lng: value.lng };
-      this.mapOptions.center = { lat: value.lat, lng: value.lng };
-      console.log(value.lat, value.lng);
     });
   }
 
   ngAfterViewInit(): void {
-    console.log('Values on ngAfterViewInit():');
     console.log('googleMapsComponent:', this.googleMapsComponent);
   }
 
@@ -50,7 +44,8 @@ export class MapPageComponent {
 
   moveMap(event: google.maps.MapMouseEvent): void {
     if (event.latLng) {
-      this.center = event.latLng.toJSON();
+      // this.center = event.latLng.toJSON();
+      this.ls.updateCenter(event.latLng.toJSON());
     }
   }
 
@@ -60,5 +55,15 @@ export class MapPageComponent {
     }
   }
 
-  addMarker(event: google.maps.MapMouseEvent): void {}
+  addMarker(event: google.maps.MapMouseEvent) {
+    if (event.latLng) {
+      console.log(event.latLng.toJSON())
+      this.markerPositions.push(event.latLng.toJSON());
+    }
+  }
+
+  clickMarker(position: google.maps.LatLngLiteral) {
+    console.log(position)
+  }
+
 }

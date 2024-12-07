@@ -6,14 +6,14 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class LocationService {
-  currentLoc$ = new BehaviorSubject<Coordinates>({ lat: 0, lng: 0 });
+  loc$ = new BehaviorSubject<Coordinates>({ lat: 0, lng: 0 });
   constructor() {}
 
-  getLocation(): void {
+  getCurrentLocation(): void {
     navigator.geolocation.getCurrentPosition(
       (position: GeolocationPosition) => {
         if (position) {
-          this.currentLoc$.next({
+          this.loc$.next({
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           });
@@ -21,5 +21,9 @@ export class LocationService {
         }
       },
     );
+  }
+
+  updateCenter(position: google.maps.LatLngLiteral): void {
+    this.loc$.next(position)
   }
 }

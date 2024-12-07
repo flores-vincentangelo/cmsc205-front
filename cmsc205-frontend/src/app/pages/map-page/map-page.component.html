@@ -1,15 +1,19 @@
 <div class="map-container">
   <google-map
+    [mapId]="'project-map'"
     [height]="'100%'"
     [width]="'100%'"
     [center]="center"
     [zoom]="zoom"
     [options]="mapOptions"
-    (mapClick)="moveMap($event)"
+    (mapClick)="addMarker($event)"
     (mapMousemove)="move($event)"
   >
-    <!-- <map-marker [position]="marker.position"></map-marker> -->
+  @for (position of markerPositions; track position) {
+      <map-advanced-marker [position]="position" [options]="markerOptions" (mapClick)="clickMarker(position)" />
+
+  }
   </google-map>
-  <button (click)="changeLoc()">PRESS ME</button>
-  {{ display | json }}
+  <!-- <button (click)="addMarker($event)">PRESS ME</button> -->
+  {{ markerPositions | json }}
 </div>
