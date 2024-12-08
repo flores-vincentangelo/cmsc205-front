@@ -10,9 +10,9 @@
     (mapMousemove)="move($event)"
   >
   @for (position of markerPositions; track position) {
-      <map-advanced-marker [position]="position" [options]="markerOptions" (mapClick)="clickMarker(position)" />
+      <map-advanced-marker [position]="position" [options]="markerOptions" (click)="clickMarker(position)" />
 
-  }
+    }
   </google-map>
   <!-- <button (click)="addMarker($event)">PRESS ME</button> -->
   {{ markerPositions | json }}
