@@ -1,7 +1,4 @@
 
-    <!-- <button nz-button nzType="primary" (click)="showModal()">
-      <span>Show Modal</span>
-    </button> -->
     <nz-modal
       [(nzVisible)]="isVisible"
       nzTitle="Modal Title"
@@ -9,6 +6,7 @@
       (nzOnOk)="handleOk()"
       [nzOkLoading]="isOkLoading"
     >
-      <p *nzModalContent>Modal Content</p>
+      <div *nzModalContent>
+        <app-marker-details-input-form></app-marker-details-input-form>
+      </div>
     </nz-modal>
-    {{isVisible}}

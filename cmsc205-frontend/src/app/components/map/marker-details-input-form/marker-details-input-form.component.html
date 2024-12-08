@@ -1,1 +1,25 @@
-<p>marker-details-input-form works!</p>
+<div class="form-container">
+  <form nz-form [formGroup]="inputForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-label
+        nz-form-label
+        [nzSm]="formLabelSm"
+        [nzXs]="formLabelXs"
+        nzFor="descrption"
+        >Description</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="formControlSm"
+        [nzXs]="formLabelXs"
+        nzErrorTip="The input is not valid E-mail!"
+      >
+        <input nz-input formControlName="descrption" id="descrption" />
+      </nz-form-control>
+    </nz-form-item>
+    <!-- <nz-form-item nz-row class="register-area">
+      <nz-form-control [nzSpan]="100" [nzOffset]="registerOffset">
+        <button nz-button nzType="primary">Update</button>
+      </nz-form-control>
+    </nz-form-item> -->
+  </form>
+</div>

@@ -3,11 +3,12 @@ import { Component, inject } from '@angular/core';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { ModalService } from '../../../services/modal.service';
+import { MarkerDetailsInputFormComponent } from '../marker-details-input-form/marker-details-input-form.component';
 
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [NzButtonModule, NzModalModule],
+  imports: [NzButtonModule, NzModalModule, MarkerDetailsInputFormComponent],
   templateUrl: './modal.component.html'
 })
 export class ModalComponent {

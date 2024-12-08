@@ -1,15 +1,16 @@
 import { CommonModule, JsonPipe } from '@angular/common';
 import { Component, inject, ViewChild } from '@angular/core';
-import { GoogleMap, MapInfoWindow, MapAdvancedMarker } from '@angular/google-maps';
+import { GoogleMap, MapInfoWindow } from '@angular/google-maps';
 import { LocationService } from '../../services/location.service';
 import { MarkerComponent } from '../../components/map/marker/marker.component';
 import { ModalComponent } from '../../components/map/modal/modal.component';
 import { ModalService } from '../../services/modal.service';
+import { MarkerDetailsInputFormComponent } from '../../components/map/marker-details-input-form/marker-details-input-form.component';
 
 @Component({
   standalone: true,
   selector: 'app-map-page',
-  imports: [CommonModule, GoogleMap, JsonPipe, MarkerComponent, MapInfoWindow, ModalComponent],
+  imports: [CommonModule, GoogleMap, JsonPipe, MarkerComponent, MapInfoWindow, ModalComponent, MarkerDetailsInputFormComponent],
   templateUrl: './map-page.component.html',
   styleUrl: './map-page.component.css',
 })
