@@ -1,6 +1,6 @@
 import { CommonModule, JsonPipe } from '@angular/common';
 import { Component, inject, ViewChild } from '@angular/core';
-import { GoogleMap, MapMarker, MapAdvancedMarker } from '@angular/google-maps';
+import { GoogleMap, MapAdvancedMarker, MapMarker } from '@angular/google-maps';
 import { LocationService } from '../../services/location.service';
 
 @Component({
@@ -11,18 +11,21 @@ import { LocationService } from '../../services/location.service';
   styleUrl: './map-page.component.css',
 })
 export class MapPageComponent {
-  @ViewChild(GoogleMap)
-  googleMapsComponent!: GoogleMap;
   ls = inject(LocationService);
 
+  @ViewChild(GoogleMap)
+  googleMapsComponent!: GoogleMap;
   display: google.maps.LatLngLiteral = { lat: 0, lng: 0 };
   mapOptions: google.maps.MapOptions = {
     disableDefaultUI: true,
   };
-  markerOptions: google.maps.marker.AdvancedMarkerElementOptions = { gmpDraggable: false, gmpClickable: true };
   center: google.maps.LatLngLiteral = { lat: 40.73061, lng: -73.935242 };
   zoom = 15;
 
+  markerOptions: google.maps.marker.AdvancedMarkerElementOptions = {
+    gmpDraggable: false,
+    gmpClickable: true,
+  };
   markerPositions: google.maps.LatLngLiteral[] = [];
 
   ngOnInit(): void {
