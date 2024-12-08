@@ -10,10 +10,9 @@
     (mapMousemove)="move($event)"
   >
   @for (position of markerPositions; track position) {
-      <map-advanced-marker [position]="position" [options]="markerOptions" (click)="clickMarker(position)" />
-
+      <app-marker [position]="position" (openInfoWindowEvent)="openInfoWindow($event)"/>
     }
+    <map-info-window>{{infoWindowContents}}</map-info-window>
   </google-map>
-  <!-- <button (click)="addMarker($event)">PRESS ME</button> -->
   {{ markerPositions | json }}
 </div>
