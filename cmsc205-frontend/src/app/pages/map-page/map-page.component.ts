@@ -39,12 +39,10 @@ export class MapPageComponent {
   changeLoc(): void {
     const value = { lat: 20, lng: 20 };
     this.center = { lat: value.lat, lng: value.lng };
-    console.log(this.center, this.mapOptions.center);
   }
 
   moveMap(event: google.maps.MapMouseEvent): void {
     if (event.latLng) {
-      // this.center = event.latLng.toJSON();
       this.ls.updateCenter(event.latLng.toJSON());
     }
   }
@@ -57,7 +55,6 @@ export class MapPageComponent {
 
   addMarker(event: google.maps.MapMouseEvent) {
     if (event.latLng) {
-      console.log(event.latLng.toJSON())
       this.markerPositions.push(event.latLng.toJSON());
     }
   }
