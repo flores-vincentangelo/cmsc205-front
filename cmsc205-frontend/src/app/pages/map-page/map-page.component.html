@@ -12,7 +12,10 @@
   @for (position of markerPositions; track position) {
       <app-marker [position]="position" (openInfoWindowEvent)="openInfoWindow($event)"/>
     }
-    <map-info-window>{{infoWindowContents}}</map-info-window>
+    <map-info-window>
+      {{infoWindowContents}}
+    </map-info-window>
   </google-map>
-  {{ markerPositions | json }}
+  <app-modal></app-modal>
 </div>
+{{ markerPositions | json }}
