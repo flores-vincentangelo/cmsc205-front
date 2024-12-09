@@ -68,6 +68,10 @@
   vertical-align: middle;
 }
 
+.menu-ul {
+  font-size: 20px;
+}
+
 nz-header {
   padding: 0;
   width: 100%;

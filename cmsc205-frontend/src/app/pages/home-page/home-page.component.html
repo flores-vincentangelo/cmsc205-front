@@ -1,9 +1,10 @@
 <nz-layout class="app-layout">
   <nz-sider
     class="menu-sidebar"
-    nzCollapsible="false"
+    nzCollapsible="true"
+    [(nzCollapsed)]="isCollapsed"
     nzWidth="256px"
-    nzBreakpoint="md"
+    nzBreakpoint="sm"
     [nzTrigger]="null"
   >
     <div class="sidebar-logo">
@@ -12,15 +13,24 @@
         <h1>BantayTubig</h1>
       </a>
     </div>
-    <ul nz-menu nzMode="vertical">
-      <li nz-menu-item nzMatchRouter>
-        <a [routerLink]="['map']">Map</a>
+    <ul nz-menu nzMode="inline" class="menu-ul">
+      <li nz-menu-item>
+        <!-- <a [routerLink]="['map']">
+          <span nz-icon nzType="global" nzTheme="outline"></span>
+          <span>Map</span>
+        </a> -->
       </li>
-      <li nz-menu-item nzMatchRouter>
-        <a [routerLink]="['knowledge']">Knowledge</a>
+      <li nz-menu-item>
+        <!-- <a [routerLink]="['knowledge']">
+          <span nz-icon nzType="book" nzTheme="outline"></span>
+          <span>Knowledge</span>
+        </a> -->
       </li>
-      <li nz-menu-item nzMatchRouter>
-        <a [routerLink]="['profile']">Profile</a>
+      <li nz-menu-item>
+        <!-- <a [routerLink]="['profile']">
+          <span nz-icon nzType="user" nzTheme="outline"></span>
+          <span>Profile</span>
+        </a> -->
       </li>
       <!-- <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
         <ul>
@@ -47,12 +57,13 @@
   <nz-layout>
     <nz-header>
       <div class="app-header">
-        <!-- <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-            <span class="trigger"
-               nz-icon
-               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-            ></span>
-        </span> -->
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <span
+            class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          ></span>
+        </span>
       </div>
     </nz-header>
     <nz-content>
