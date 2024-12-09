@@ -1,11 +1,19 @@
-.form-container {
-  background-color: red;
+.profile-container {
+  display: flex;
+  flex-direction: column;
 }
 
-.formcontrol {
-  background-color: red;
-  display: flex;
-  justify-content: center;
+.profile-container h1 {
+  margin-bottom: 40px;
+}
+
+.profile-container h2 {
+  margin-bottom: 40px;
+}
+
+.form-container {
+  align-self: center;
+  width: 500px;
 }
 
 .ant-select.ant-select-in-form-item.phone-select {

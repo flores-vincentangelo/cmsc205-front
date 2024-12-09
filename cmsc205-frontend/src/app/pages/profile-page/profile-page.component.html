@@ -1,19 +1,17 @@
 <div class="profile-container">
-  <div>Profile</div>
-  <div>Welcome {{ fullname }}</div>
+  <div><h1 nz-typography>Profile</h1></div>
+  <div>
+    <h2 nz-typography>Welcome {{ fullname }}</h2>
+  </div>
   <div class="form-container">
     <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
       <nz-form-item>
-        <nz-form-label
-          nz-form-label
-          [nzSm]="formLabelSm"
-          [nzXs]="formLabelXs"
-          nzFor="email"
+        <nz-form-label nz-form-label nz-col [nzFlex]="nzFlexLabel" nzFor="email"
           >E-mail</nz-form-label
         >
         <nz-form-control
-          [nzSm]="formControlSm"
-          [nzXs]="formLabelXs"
+          nz-col
+          [nzFlex]="nzFlexControl"
           nzErrorTip="The input is not valid E-mail!"
         >
           <input nz-input formControlName="email" id="email" />
@@ -22,12 +20,12 @@
       <nz-form-item>
         <nz-form-label
           nz-form-label
-          [nzSm]="formLabelSm"
-          [nzXs]="formLabelXs"
+          nz-col
+          [nzFlex]="nzFlexLabel"
           nzFor="password"
           >Password</nz-form-label
         >
-        <nz-form-control [nzSm]="formControlSm" [nzXs]="formLabelXs">
+        <nz-form-control nz-col [nzFlex]="nzFlexControl">
           <input
             nz-input
             type="password"
@@ -39,14 +37,14 @@
       <nz-form-item>
         <nz-form-label
           nz-form-label
-          [nzSm]="formLabelSm"
-          [nzXs]="formLabelXs"
+          nz-col
+          [nzFlex]="nzFlexLabel"
           nzFor="checkPassword"
           >Confirm Password</nz-form-label
         >
         <nz-form-control
-          [nzSm]="formControlSm"
-          [nzXs]="formLabelXs"
+          nz-col
+          [nzFlex]="nzFlexControl"
           [nzErrorTip]="errorTpl"
         >
           <input
@@ -68,15 +66,15 @@
       <nz-form-item>
         <nz-form-label
           nz-form-label
-          [nzSm]="formLabelSm"
-          [nzXs]="formLabelXs"
+          nz-col
+          [nzFlex]="nzFlexLabel"
           nzFor="firstname"
         >
           <span>First Name</span>
         </nz-form-label>
         <nz-form-control
-          [nzSm]="formControlSm"
-          [nzXs]="formLabelXs"
+          nz-col
+          [nzFlex]="nzFlexControl"
           nzErrorTip="Please input your first name!"
         >
           <input nz-input id="firstname" formControlName="firstname" />
@@ -85,15 +83,15 @@
       <nz-form-item>
         <nz-form-label
           nz-form-label
-          [nzSm]="formLabelSm"
-          [nzXs]="formLabelXs"
+          nz-col
+          [nzFlex]="nzFlexLabel"
           nzFor="lastname"
         >
           <span>Last Name</span>
         </nz-form-label>
         <nz-form-control
-          [nzSm]="formControlSm"
-          [nzXs]="formLabelXs"
+          nz-col
+          [nzFlex]="nzFlexControl"
           nzErrorTip="Please input your lastname!"
         >
           <input nz-input id="lastname" formControlName="lastname" />

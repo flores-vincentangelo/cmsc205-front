@@ -14,6 +14,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
 import { SessionService } from '../../services/session.service';
 import { Router } from '@angular/router';
@@ -27,6 +28,7 @@ import { Router } from '@angular/router';
     NzCheckboxModule,
     NzFormModule,
     NzInputModule,
+    NzTypographyModule,
   ],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.css',
@@ -35,6 +37,9 @@ export class ProfilePageComponent {
   router = inject(Router);
   ss = inject(SessionService);
   fullname = this.ss.getFullname();
+
+  nzFlexLabel: number | string = '150px';
+  nzFlexControl: number | string = 'auto';
 
   formLabelSm: number = 10;
   formLabelXs: number = 24;
