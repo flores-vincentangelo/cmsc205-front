@@ -9,15 +9,17 @@
     (mapClick)="addMarker($event)"
     (mapMousemove)="move($event)"
   >
-  @for (position of markerPositions; track position) {
-      <app-marker [position]="position" (openInfoWindowEvent)="openInfoWindow($event)"/>
+    @for (position of markerPositions; track position) {
+      <app-marker
+        [position]="position"
+        (openInfoWindowEvent)="openInfoWindow($event)"
+      />
     }
     <map-info-window>
-      {{infoWindowContents}}
+      {{ infoWindowContents }}
     </map-info-window>
   </google-map>
   <app-modal></app-modal>
 </div>
 {{ markerPositions | json }}
 <app-marker-details-input-form></app-marker-details-input-form>
-

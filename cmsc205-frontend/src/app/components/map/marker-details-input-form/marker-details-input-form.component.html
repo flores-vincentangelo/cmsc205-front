@@ -27,6 +27,20 @@
           </nz-upload>
         </nz-form-control>
       </nz-form-item>
+      <nz-form-item
+        ><nz-form-label
+          nz-col
+          [nz-Flex]="nzFlexLabel"
+          nz-form-label
+          nzFor="state"
+        >
+          State</nz-form-label
+        ><nz-form-control
+          nz-col
+          [nzFlex]="nzFlexControl"
+          nzErrorTip="Please choose a state"
+        ></nz-form-control>
+      </nz-form-item>
       <nz-form-item nz-row>
         <nz-form-label
           nz-col
@@ -39,7 +53,7 @@
         <nz-form-control
           nz-col
           [nzFlex]="nzFlexControl"
-          nzErrorTip="The input is not valid E-mail!"
+          nzErrorTip="The input must contain some description"
         >
           <textarea
             nz-input
@@ -48,11 +62,11 @@
           ></textarea>
         </nz-form-control>
       </nz-form-item>
-      <nz-form-item nz-row nzJustify="end">
+      <!-- <nz-form-item nz-row nzJustify="end">
         <nz-form-control nz-col nzSpan="4">
           <button nz-button nzType="primary">submit</button>
         </nz-form-control>
-      </nz-form-item>
+      </nz-form-item> -->
     </form>
   </div>
 </div>

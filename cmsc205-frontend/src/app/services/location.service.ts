@@ -24,6 +24,6 @@ export class LocationService {
   }
 
   updateCenter(position: google.maps.LatLngLiteral): void {
-    this.loc$.next(position)
+    this.loc$.next(position);
   }
 }

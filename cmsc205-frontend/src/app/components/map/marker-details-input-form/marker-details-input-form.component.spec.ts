@@ -8,9 +8,8 @@ describe('MarkerDetailsInputFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MarkerDetailsInputFormComponent]
-    })
-    .compileComponents();
+      imports: [MarkerDetailsInputFormComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(MarkerDetailsInputFormComponent);
     component = fixture.componentInstance;

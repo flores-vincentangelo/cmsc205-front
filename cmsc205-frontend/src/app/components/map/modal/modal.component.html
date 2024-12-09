@@ -1,12 +1,11 @@
-
-    <nz-modal
-      [(nzVisible)]="isVisible"
-      nzTitle="Modal Title"
-      (nzOnCancel)="handleCancel()"
-      (nzOnOk)="handleOk()"
-      [nzOkLoading]="isOkLoading"
-    >
-      <div *nzModalContent>
-        <app-marker-details-input-form></app-marker-details-input-form>
-      </div>
-    </nz-modal>
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="Modal Title"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  [nzOkLoading]="isOkLoading"
+>
+  <div *nzModalContent>
+    <app-marker-details-input-form></app-marker-details-input-form>
+  </div>
+</nz-modal>
