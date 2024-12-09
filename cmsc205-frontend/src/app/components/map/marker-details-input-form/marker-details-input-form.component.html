@@ -27,19 +27,26 @@
           </nz-upload>
         </nz-form-control>
       </nz-form-item>
-      <nz-form-item
-        ><nz-form-label
+      <nz-form-item>
+        <nz-form-label
           nz-col
-          [nz-Flex]="nzFlexLabel"
+          [nzFlex]="nzFlexLabel"
           nz-form-label
           nzFor="state"
         >
-          State</nz-form-label
-        ><nz-form-control
+          State
+        </nz-form-label>
+        <nz-form-control
           nz-col
           [nzFlex]="nzFlexControl"
           nzErrorTip="Please choose a state"
-        ></nz-form-control>
+        >
+          <nz-select nzFor="state" formControlName="state">
+            <nz-option nzValue="dirty" nzLabel="Dirty"></nz-option>
+            <nz-option nzValue="clean" nzLabel="Clean"></nz-option>
+            <nz-option nzValue="safe" nzLabel="Safe"></nz-option>
+          </nz-select>
+        </nz-form-control>
       </nz-form-item>
       <nz-form-item nz-row>
         <nz-form-label
