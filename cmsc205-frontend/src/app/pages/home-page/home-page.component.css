@@ -20,6 +20,7 @@
 
 .menu-sidebar ul {
   background-color: var(--white);
+  font-size: 20px;
 }
 
 .header-trigger {
@@ -37,25 +38,26 @@
 }
 
 .sidebar-logo {
-  position: relative;
+  /* position: relative; */
   height: 64px;
-  padding-left: 24px;
-  overflow: hidden;
-  line-height: 64px;
-  background: var(--white);
+  /* padding-left: 24px; */
+  /* overflow: hidden; */
+  /* line-height: 64px; */
+  display: flex;
+  align-items: center;
   transition: all 0.3s;
 }
 
-.sidebar-logo img {
-  display: inline-block;
-  height: 32px;
-  width: 32px;
-  vertical-align: middle;
+.sidebar-logo a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
 }
 
 .sidebar-logo h1 {
-  display: inline-block;
-  margin: 0 0 0 20px;
+  /* display: inline; */
+  margin: 0 0 0 5px;
   color: var(--primary-blue);
   font-weight: 600;
   font-size: 20px;
@@ -65,11 +67,32 @@
     Arial,
     Helvetica,
     sans-serif;
-  vertical-align: middle;
+  /* vertical-align: middle; */
 }
 
 .menu-ul {
-  font-size: 20px;
+  margin-top: 20px;
+}
+
+.menu-ul li {
+  margin-bottom: 20px;
+}
+
+.menu-ul a {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+
+.menu-ul span {
+  color: #023047;
+  margin-left: 5px;
+}
+
+.ant-menu.ant-menu-inline-collapsed > .ant-menu-item {
+  padding: 0;
+  display: flex;
+  justify-content: center;
 }
 
 nz-header {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgStyle } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -16,6 +16,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
     NzIconModule,
     NzLayoutModule,
     NzMenuModule,
+    NgStyle,
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css',
@@ -23,4 +24,14 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 export class HomePageComponent {
   isCollapsed = true;
   nzThemeVal: string = 'outline';
+
+  svgSideLength = '29px';
+  svgStrokeColor = '#023047';
+
+  setLogoStyling() {
+    return {
+      'justify-content': this.isCollapsed ? 'center' : 'start',
+      'padding-left': this.isCollapsed ? 0 : '24px',
+    };
+  }
 }

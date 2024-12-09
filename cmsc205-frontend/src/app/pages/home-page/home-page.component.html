@@ -3,51 +3,128 @@
     class="menu-sidebar"
     nzCollapsible="true"
     [(nzCollapsed)]="isCollapsed"
-    nzWidth="256px"
+    nzWidth="220px"
     nzBreakpoint="sm"
     [nzTrigger]="null"
   >
     <div class="sidebar-logo">
-      <a href="" target="_blank">
-        <!-- <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo"> -->
-        <h1>BantayTubig</h1>
+      <a href="" target="_blank" [ngStyle]="setLogoStyling()">
+        <svg
+          [attr.width]="svgSideLength"
+          [attr.height]="svgSideLength"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="Environment / Water_Drop">
+            <path
+              id="Vector"
+              d="M16.0001 13.3848C16.0001 14.6088 15.526 15.7828 14.6821 16.6483C14.203 17.1397 13.6269 17.5091 13 17.7364M19 13.6923C19 7.11538 12 2 12 2C12 2 5 7.11538 5 13.6923C5 15.6304 5.7375 17.4893 7.05025 18.8598C8.36301 20.2302 10.1436 20.9994 12.0001 20.9994C13.8566 20.9994 15.637 20.2298 16.9497 18.8594C18.2625 17.4889 19 15.6304 19 13.6923Z"
+              stroke="#0077b6"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </g>
+        </svg>
+        @if (!isCollapsed) {
+          <h1>BantayTubig</h1>
+        }
       </a>
     </div>
-    <ul nz-menu nzMode="inline" class="menu-ul">
-      <li nz-menu-item>
-        <!-- <a [routerLink]="['map']">
-          <span nz-icon nzType="global" nzTheme="outline"></span>
-          <span>Map</span>
-        </a> -->
+    <ul nz-menu nzTheme="light" nzMode="inline" class="menu-ul">
+      <li nz-menu-item nzMatchRouter>
+        <a [routerLink]="['map']">
+          <!-- <span nz-icon nzType="global" nzTheme="outline"></span> -->
+          <svg
+            [attr.width]="svgSideLength"
+            [attr.height]="svgSideLength"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9 20L3 17V4L9 7M9 20L15 17M9 20V7M15 17L21 20V7L15 4M15 17V4M9 7L15 4"
+              [attr.stroke]="svgStrokeColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          @if (!isCollapsed) {
+            <span>Map</span>
+          }
+        </a>
       </li>
-      <li nz-menu-item>
-        <!-- <a [routerLink]="['knowledge']">
-          <span nz-icon nzType="book" nzTheme="outline"></span>
-          <span>Knowledge</span>
-        </a> -->
+      <li nz-menu-item nzMatchRouter>
+        <a [routerLink]="['knowledge']">
+          <!-- <span nz-icon nzType="book" nzTheme="outline"></span> -->
+          <svg
+            [attr.width]="svgSideLength"
+            [attr.height]="svgSideLength"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4 19V6.2C4 5.0799 4 4.51984 4.21799 4.09202C4.40973 3.71569 4.71569 3.40973 5.09202 3.21799C5.51984 3 6.0799 3 7.2 3H16.8C17.9201 3 18.4802 3 18.908 3.21799C19.2843 3.40973 19.5903 3.71569 19.782 4.09202C20 4.51984 20 5.0799 20 6.2V17H6C4.89543 17 4 17.8954 4 19ZM4 19C4 20.1046 4.89543 21 6 21H20M9 7H15M9 11H15M19 17V21"
+              [attr.stroke]="svgStrokeColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          @if (!isCollapsed) {
+            <span>Knowledge</span>
+          }
+        </a>
       </li>
-      <li nz-menu-item>
-        <!-- <a [routerLink]="['profile']">
-          <span nz-icon nzType="user" nzTheme="outline"></span>
-          <span>Profile</span>
-        </a> -->
+      <li nz-menu-item nzMatchRouter>
+        <a [routerLink]="['profile']">
+          <!-- <span nz-icon nzType="user" nzTheme="outline"></span> -->
+          <svg
+            [attr.width]="svgSideLength"
+            [attr.height]="svgSideLength"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
+              [attr.stroke]="svgStrokeColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z"
+              [attr.stroke]="svgStrokeColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          @if (!isCollapsed) {
+            <span>Profile</span>
+          }
+        </a>
       </li>
       <!-- <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
         <ul>
-          <li nz-menu-item nzMatchRouter>
+          <li nz-menu-item nzMatchRouter nzMatchRouter>
             <a routerLink="/welcome">Welcome</a>
           </li>
-          <li nz-menu-item nzMatchRouter>
+          <li nz-menu-item nzMatchRouter nzMatchRouter>
             <a>Monitor</a>
           </li>
-          <li nz-menu-item nzMatchRouter>
+          <li nz-menu-item nzMatchRouter nzMatchRouter>
             <a>Workplace</a>
           </li>
         </ul>
       </li>
       <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
         <ul>
-          <li nz-menu-item nzMatchRouter>
+          <li nz-menu-item nzMatchRouter nzMatchRouter>
             <a>Basic Form</a>
           </li>
         </ul>
