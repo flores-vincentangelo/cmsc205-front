@@ -1,25 +1,58 @@
-<div class="form-container">
-  <form nz-form [formGroup]="inputForm" (ngSubmit)="submitForm()">
-    <nz-form-item>
-      <nz-form-label
-        nz-form-label
-        [nzSm]="formLabelSm"
-        [nzXs]="formLabelXs"
-        nzFor="descrption"
-        >Description</nz-form-label
-      >
-      <nz-form-control
-        [nzSm]="formControlSm"
-        [nzXs]="formLabelXs"
-        nzErrorTip="The input is not valid E-mail!"
-      >
-        <input nz-input formControlName="descrption" id="descrption" />
-      </nz-form-control>
-    </nz-form-item>
-    <!-- <nz-form-item nz-row class="register-area">
-      <nz-form-control [nzSpan]="100" [nzOffset]="registerOffset">
-        <button nz-button nzType="primary">Update</button>
-      </nz-form-control>
-    </nz-form-item> -->
-  </form>
+<div class="markerDetailsInput-container">
+  <div class="form-container">
+    <form nz-form [formGroup]="inputForm" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-label
+          nz-col
+          [nzFlex]="nzFlexLabel"
+          nz-form-label
+          nzFor="descrption"
+        >
+          Image
+        </nz-form-label>
+        <nz-form-control
+          nz-col
+          [nzFlex]="nzFlexControl"
+          nzErrorTip="The input is not valid E-mail!"
+        >
+          <nz-upload
+            nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            nzListType="picture"
+            [nzPreviewFile]="previewFile"
+          >
+            <button nz-button>
+              <span nz-icon nzType="upload"></span>
+              Upload
+            </button>
+          </nz-upload>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nz-row>
+        <nz-form-label
+          nz-col
+          [nzFlex]="nzFlexLabel"
+          nz-form-label
+          nzFor="descrption"
+        >
+          Description
+        </nz-form-label>
+        <nz-form-control
+          nz-col
+          [nzFlex]="nzFlexControl"
+          nzErrorTip="The input is not valid E-mail!"
+        >
+          <textarea
+            nz-input
+            formControlName="descrption"
+            id="descrption"
+          ></textarea>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nz-row nzJustify="end">
+        <nz-form-control nz-col nzSpan="4">
+          <button nz-button nzType="primary">submit</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
 </div>
