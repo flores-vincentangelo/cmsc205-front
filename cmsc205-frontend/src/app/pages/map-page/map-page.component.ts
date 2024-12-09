@@ -23,6 +23,7 @@ import { MarkerDetailsInputFormComponent } from '../../components/map/marker-det
 })
 export class MapPageComponent {
   ps = inject(PositionService);
+  ms = inject(ModalService);
 
   @ViewChild(GoogleMap)
   googleMapsComponent!: GoogleMap;
@@ -31,8 +32,7 @@ export class MapPageComponent {
     disableDefaultUI: true,
   };
   center: google.maps.LatLngLiteral = { lat: 40.73061, lng: -73.935242 };
-  // zoom = 15;
-  zoom = 1;
+  zoom = 15;
 
   pinOptions: google.maps.marker.PinElementOptions = {
     background: 'green',
@@ -45,7 +45,8 @@ export class MapPageComponent {
   @ViewChild(MapInfoWindow) infoWindow!: MapInfoWindow;
   infoWindowContents: string = '';
 
-  ms = inject(ModalService);
+  positionInput!: google.maps.LatLngLiteral | null;
+
   async ngOnInit(): Promise<void> {
     // <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="800px" height="800px" viewBox="0 0 32 32" version="1.1"><path d="M4 12q0-3.264 1.6-6.016t4.384-4.352 6.016-1.632 6.016 1.632 4.384 4.352 1.6 6.016q0 1.376-0.672 3.2t-1.696 3.68-2.336 3.776-2.56 3.584-2.336 2.944-1.728 2.080l-0.672 0.736q-0.256-0.256-0.672-0.768t-1.696-2.016-2.368-3.008-2.528-3.52-2.368-3.84-1.696-3.616-0.672-3.232zM8 12q0 3.328 2.336 5.664t5.664 2.336 5.664-2.336 2.336-5.664-2.336-5.632-5.664-2.368-5.664 2.368-2.336 5.632z"/></svg>
     // const { PinElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
@@ -58,6 +59,10 @@ export class MapPageComponent {
     this.ps.getCurrentLocation();
     this.ps.currentPosition$.subscribe((value) => {
       this.center = { lat: value.lat, lng: value.lng };
+    });
+
+    this.ps.positionInput$.subscribe((value) => {
+      this.positionInput = value;
     });
   }
 
@@ -83,11 +88,16 @@ export class MapPageComponent {
     }
   }
 
-  addMarker(event: google.maps.MapMouseEvent) {
+  openInputModal(event: google.maps.MapMouseEvent) {
     if (event.latLng) {
       this.ms.isVisible$.next(true);
       this.ps.setPositionInput(event.latLng.toJSON());
-      // this.markerPositions.push(event.latLng.toJSON());
+    }
+  }
+
+  addMarker(isSubmit: boolean) {
+    if (isSubmit && this.positionInput) {
+      this.markerPositions.push(this.positionInput);
     }
   }
 

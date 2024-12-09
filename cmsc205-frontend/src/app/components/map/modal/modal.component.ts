@@ -1,5 +1,10 @@
-import { Component, inject, ViewChild } from '@angular/core';
-import { JsonPipe } from '@angular/common';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Output,
+  ViewChild,
+} from '@angular/core';
 
 import { MarkerDetailsInputFormComponent } from '../marker-details-input-form/marker-details-input-form.component';
 
@@ -12,15 +17,12 @@ import { PositionService } from '../../../services/position.service';
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [
-    NzButtonModule,
-    NzModalModule,
-    MarkerDetailsInputFormComponent,
-    JsonPipe,
-  ],
+  imports: [NzButtonModule, NzModalModule, MarkerDetailsInputFormComponent],
   templateUrl: './modal.component.html',
 })
 export class ModalComponent {
+  @Output() formIsSubmitEvent = new EventEmitter<boolean>();
+
   ms = inject(ModalService);
   ps = inject(PositionService);
   positionInput!: google.maps.LatLngLiteral | null;
@@ -46,6 +48,7 @@ export class ModalComponent {
       console.log(this.positionInput);
       this.inputFormComp.inputForm.reset();
       this.isOkLoading = true;
+      this.formIsSubmit(true);
       setTimeout(() => {
         this.ms.isVisible$.next(false);
         this.isOkLoading = false;
@@ -63,7 +66,12 @@ export class ModalComponent {
   }
 
   handleCancel(): void {
+    this.formIsSubmit(false);
     this.inputFormComp.inputForm.reset();
     this.ms.isVisible$.next(false);
+  }
+
+  formIsSubmit(isSubmit: boolean) {
+    this.formIsSubmitEvent.emit(isSubmit);
   }
 }

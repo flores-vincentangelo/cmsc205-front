@@ -1,12 +1,11 @@
 <nz-modal
   [(nzVisible)]="isVisible"
-  nzTitle="Modal Title"
+  nzTitle="Input Water Quality Details"
   (nzOnCancel)="handleCancel()"
   (nzOnOk)="handleOk()"
   [nzOkLoading]="isOkLoading"
 >
   <div *nzModalContent>
     <app-marker-details-input-form></app-marker-details-input-form>
-    {{ positionInput | json }}
   </div>
 </nz-modal>

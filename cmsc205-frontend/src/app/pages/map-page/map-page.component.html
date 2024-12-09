@@ -6,7 +6,7 @@
     [center]="center"
     [zoom]="zoom"
     [options]="mapOptions"
-    (mapClick)="addMarker($event)"
+    (mapClick)="openInputModal($event)"
     (mapMousemove)="move($event)"
   >
     @for (position of markerPositions; track position) {
@@ -19,6 +19,6 @@
       {{ infoWindowContents }}
     </map-info-window>
   </google-map>
-  <app-modal></app-modal>
+  <app-modal (formIsSubmitEvent)="addMarker($event)"></app-modal>
 </div>
 {{ markerPositions | json }}
