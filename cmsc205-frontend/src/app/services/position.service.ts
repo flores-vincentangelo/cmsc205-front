@@ -1,19 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Coordinates } from '../models/coordinates';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LocationService {
-  loc$ = new BehaviorSubject<Coordinates>({ lat: 0, lng: 0 });
+export class PositionService {
+  currentPosition$ = new BehaviorSubject<google.maps.LatLngLiteral>({
+    lat: 0,
+    lng: 0,
+  });
+  positionInput$ = new BehaviorSubject<google.maps.LatLngLiteral>({
+    lat: 0,
+    lng: 0,
+  });
+
+  setPositionInput(position: google.maps.LatLngLiteral) {
+    this.positionInput$.next(position);
+  }
+
   constructor() {}
 
   getCurrentLocation(): void {
     navigator.geolocation.getCurrentPosition(
       (position: GeolocationPosition) => {
         if (position) {
-          this.loc$.next({
+          this.currentPosition$.next({
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           });
@@ -24,6 +35,6 @@ export class LocationService {
   }
 
   updateCenter(position: google.maps.LatLngLiteral): void {
-    this.loc$.next(position);
+    this.currentPosition$.next(position);
   }
 }

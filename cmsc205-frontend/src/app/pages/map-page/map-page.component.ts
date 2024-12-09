@@ -1,12 +1,11 @@
 import { CommonModule, JsonPipe } from '@angular/common';
 import { Component, inject, ViewChild } from '@angular/core';
 import { GoogleMap, MapInfoWindow } from '@angular/google-maps';
-import { LocationService } from '../../services/location.service';
+import { PositionService } from '../../services/position.service';
 import { MarkerComponent } from '../../components/map/marker/marker.component';
 import { ModalComponent } from '../../components/map/modal/modal.component';
 import { ModalService } from '../../services/modal.service';
 import { MarkerDetailsInputFormComponent } from '../../components/map/marker-details-input-form/marker-details-input-form.component';
-
 @Component({
   standalone: true,
   selector: 'app-map-page',
@@ -23,7 +22,7 @@ import { MarkerDetailsInputFormComponent } from '../../components/map/marker-det
   styleUrl: './map-page.component.css',
 })
 export class MapPageComponent {
-  ls = inject(LocationService);
+  ps = inject(PositionService);
 
   @ViewChild(GoogleMap)
   googleMapsComponent!: GoogleMap;
@@ -56,8 +55,8 @@ export class MapPageComponent {
     //   scale: .5,
     // })
     // this.markerOptions.content = pin.element
-    this.ls.getCurrentLocation();
-    this.ls.loc$.subscribe((value) => {
+    this.ps.getCurrentLocation();
+    this.ps.currentPosition$.subscribe((value) => {
       this.center = { lat: value.lat, lng: value.lng };
     });
   }
@@ -74,7 +73,7 @@ export class MapPageComponent {
 
   moveMap(event: google.maps.MapMouseEvent): void {
     if (event.latLng) {
-      this.ls.updateCenter(event.latLng.toJSON());
+      this.ps.updateCenter(event.latLng.toJSON());
     }
   }
 
@@ -87,6 +86,7 @@ export class MapPageComponent {
   addMarker(event: google.maps.MapMouseEvent) {
     if (event.latLng) {
       this.ms.isVisible$.next(true);
+      this.ps.setPositionInput(event.latLng.toJSON());
       // this.markerPositions.push(event.latLng.toJSON());
     }
   }

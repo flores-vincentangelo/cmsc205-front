@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { JsonPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -26,7 +25,6 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     NzUploadComponent,
     NzIconModule,
     NzSelectModule,
-    JsonPipe,
   ],
   templateUrl: './marker-details-input-form.component.html',
   styleUrl: './marker-details-input-form.component.css',
