@@ -40,20 +40,12 @@ export class PositionService {
   }
 
   getMarkers(): Marker[] {
-    return [
-      {
-        markerId: '1',
-        position: { lat: 14.63204607870904, lng: 121.02621501232493 },
-      },
-      {
-        markerId: '2',
-        position: { lat: 14.629056365246745, lng: 121.02909034038889 },
-      },
-      {
-        markerId: '3',
-        position: { lat: 14.633208734056646, lng: 121.03372519756662 },
-      },
-    ];
+    return this.markerDataArr.map((markerData) => {
+      return {
+        markerId: markerData.markerId,
+        position: markerData.position,
+      };
+    });
   }
 
   async getInfoWindowContents(
@@ -70,7 +62,7 @@ export class PositionService {
       userId: '1',
       markerId: '1',
       position: { lat: 14.63204607870904, lng: 121.02621501232493 },
-      description: 'some description',
+      description: `When you land on a sample web page or open an email template and see content beginning with "lorem ipsum," the page creator placed that apparent gibberish there on purpose. Page layouts look better with something in each section. Web page designers, content writers, and layout artists use lorem ipsum, also known as placeholder copy, to distinguish which areas on a page will hold advertisements, editorials, and filler before the final written content and website designs receive client approval. Fun Lorem Ipsum text may appear in any size and font to simulate everything you create for your campaigns.`,
       datePosted: '12 10 2024',
       image:
         'https://t3.ftcdn.net/jpg/02/74/06/48/360_F_274064877_Tuq84kGOn5nhyIJeUFTUSvXaSeedAOTT.jpg',
@@ -79,7 +71,8 @@ export class PositionService {
       userId: '1',
       markerId: '2',
       position: { lat: 14.629056365246745, lng: 121.02909034038889 },
-      description: 'some description',
+      description: `When you land on a sample web page or open an email template and see content beginning with "lorem ipsum," the page creator placed that apparent gibberish there on purpose. Page layouts look better with something in each section. Web page designers, content writers, and layout artists use lorem ipsum, also known as placeholder copy, to distinguish which areas on a page will hold advertisements, editorials, and filler before the final written content and website designs receive client approval. Fun Lorem Ipsum text may appear in any size and font to simulate everything you create for your campaigns.`,
+
       datePosted: '12 10 2024',
       image:
         'https://t3.ftcdn.net/jpg/02/74/06/48/360_F_274064877_Tuq84kGOn5nhyIJeUFTUSvXaSeedAOTT.jpg',
@@ -88,7 +81,8 @@ export class PositionService {
       userId: '1',
       markerId: '3',
       position: { lat: 14.633208734056646, lng: 121.03372519756662 },
-      description: 'some description',
+      description: `When you land on a sample web page or open an email template and see content beginning with "lorem ipsum," the page creator placed that apparent gibberish there on purpose. Page layouts look better with something in each section. Web page designers, content writers, and layout artists use lorem ipsum, also known as placeholder copy, to distinguish which areas on a page will hold advertisements, editorials, and filler before the final written content and website designs receive client approval. Fun Lorem Ipsum text may appear in any size and font to simulate everything you create for your campaigns.`,
+
       datePosted: '12 10 2024',
       image:
         'https://t3.ftcdn.net/jpg/02/74/06/48/360_F_274064877_Tuq84kGOn5nhyIJeUFTUSvXaSeedAOTT.jpg',
