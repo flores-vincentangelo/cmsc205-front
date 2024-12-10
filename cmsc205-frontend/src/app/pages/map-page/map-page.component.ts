@@ -5,7 +5,6 @@ import { PositionService } from '../../services/position.service';
 import { MarkerComponent } from '../../components/map/marker/marker.component';
 import { ModalComponent } from '../../components/map/modal/modal.component';
 import { ModalService } from '../../services/modal.service';
-import { MarkerDetailsInputFormComponent } from '../../components/map/marker-details-input-form/marker-details-input-form.component';
 @Component({
   standalone: true,
   selector: 'app-map-page',
@@ -16,7 +15,6 @@ import { MarkerDetailsInputFormComponent } from '../../components/map/marker-det
     MarkerComponent,
     MapInfoWindow,
     ModalComponent,
-    MarkerDetailsInputFormComponent,
   ],
   templateUrl: './map-page.component.html',
   styleUrl: './map-page.component.css',
@@ -40,7 +38,7 @@ export class MapPageComponent {
     scale: 0.5,
   };
 
-  markerPositions: google.maps.LatLngLiteral[] = [];
+  markerPositions!: google.maps.LatLngLiteral[];
 
   @ViewChild(MapInfoWindow) infoWindow!: MapInfoWindow;
   infoWindowContents: string = '';
@@ -64,6 +62,8 @@ export class MapPageComponent {
     this.ps.positionInput$.subscribe((value) => {
       this.positionInput = value;
     });
+
+    this.markerPositions = this.ps.getMarkers();
   }
 
   ngAfterViewInit(): void {

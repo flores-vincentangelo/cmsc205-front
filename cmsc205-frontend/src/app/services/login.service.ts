@@ -15,8 +15,8 @@ export class LoginService {
     // this.http.post<any>(url, body, options: {headers})
     // must return firstname, lastname and session jwt
 
-    this.ss.updateFirstName('login-firstname');
-    this.ss.updateLastname('login-lastname');
+    this.ss.updateFirstName('Vincent Angelo');
+    this.ss.updateLastname('Flores');
     this.router.navigate(['']);
   }
 }

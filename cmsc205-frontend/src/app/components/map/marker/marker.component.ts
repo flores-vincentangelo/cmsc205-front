@@ -5,12 +5,12 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { MapAdvancedMarker, MapInfoWindow } from '@angular/google-maps';
+import { MapAdvancedMarker } from '@angular/google-maps';
 
 @Component({
   selector: 'app-marker',
   standalone: true,
-  imports: [MapAdvancedMarker, MapInfoWindow],
+  imports: [MapAdvancedMarker],
   templateUrl: './marker.component.html',
   styleUrl: './marker.component.css',
 })

@@ -37,4 +37,12 @@ export class PositionService {
   updateCenter(position: google.maps.LatLngLiteral): void {
     this.currentPosition$.next(position);
   }
+
+  getMarkers(): google.maps.LatLngLiteral[] {
+    return [
+      { lat: 14.63204607870904, lng: 121.02621501232493 },
+      { lat: 14.629056365246745, lng: 121.02909034038889 },
+      { lat: 14.633208734056646, lng: 121.03372519756662 },
+    ];
+  }
 }
