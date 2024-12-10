@@ -6,17 +6,13 @@
           nz-col
           [nzFlex]="nzFlexLabel"
           nz-form-label
-          nzFor="descrption"
+          nzFor="image"
         >
           Image
         </nz-form-label>
-        <nz-form-control
-          nz-col
-          [nzFlex]="nzFlexControl"
-          nzErrorTip="The input is not valid E-mail!"
-        >
+        <nz-form-control nz-col [nzFlex]="nzFlexControl">
           <nz-upload
-            nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            [nzAction]="action"
             nzListType="picture"
             [nzPreviewFile]="previewFile"
           >

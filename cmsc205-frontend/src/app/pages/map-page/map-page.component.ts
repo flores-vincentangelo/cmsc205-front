@@ -1,4 +1,4 @@
-import { CommonModule, JsonPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, inject, ViewChild } from '@angular/core';
 import {
   GoogleMap,
@@ -21,7 +21,6 @@ import { Marker, MarkerData } from '../../models/marker';
   imports: [
     CommonModule,
     GoogleMap,
-    JsonPipe,
     MarkerComponent,
     MapInfoWindow,
     ModalComponent,

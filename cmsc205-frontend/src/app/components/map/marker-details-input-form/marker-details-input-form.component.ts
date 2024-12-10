@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -12,6 +12,20 @@ import { NzUploadComponent, NzUploadFile } from 'ng-zorro-antd/upload';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+
+const getBase64 = (
+  file: File | undefined,
+): Promise<string | ArrayBuffer | null> =>
+  new Promise((resolve, reject) => {
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    } else {
+      reject(null);
+    }
+  });
 
 @Component({
   selector: 'app-marker-details-input-form',
@@ -62,13 +76,99 @@ export class MarkerDetailsInputFormComponent {
 
   previewFile = (file: NzUploadFile): Observable<string> => {
     console.log('Your upload file:', file);
-    return this.http
-      .post<{ thumbnail: string }>(
-        `https://next.json-generator.com/api/json/get/4ytyBoLK8`,
-        {
-          body: file,
-        },
-      )
-      .pipe(map((res) => res.thumbnail));
+    return of('string');
+    // return this.http
+    //   .post<{ thumbnail: string }>(
+    //     `https://next.json-generator.com/api/json/get/4ytyBoLK8`,
+    //     {
+    //       body: file,
+    //     },
+    //   )
+    //   .pipe(map((res) => res.thumbnail));
+  };
+
+  action = (file: NzUploadFile): string | Observable<string> => {
+    console.log('FILE', file);
+    return of('string');
   };
 }
+
+// @Component({
+//   selector: 'nz-demo-upload-picture-card',
+//   standalone: true,
+//   imports: [NzIconModule, NzModalModule, NzUploadModule],
+//   template: `
+//     <nz-upload
+//       nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+//       nzListType="picture-card"
+//       [(nzFileList)]="fileList"
+//       [nzShowButton]="fileList.length < 8"
+//       [nzPreview]="handlePreview"
+//     >
+//       <div>
+//         <span nz-icon nzType="plus"></span>
+//         <div style="margin-top: 8px">Upload</div>
+//       </div>
+//     </nz-upload>
+//     <nz-modal
+//       [nzVisible]="previewVisible"
+//       [nzContent]="modalContent"
+//       [nzFooter]="null"
+//       (nzOnCancel)="previewVisible = false"
+//     >
+//       <ng-template #modalContent>
+//         <img [src]="previewImage" style="width: 100%" />
+//       </ng-template>
+//     </nz-modal>
+//   `
+// })
+// export class NzDemoUploadPictureCardComponent {
+//   fileList: NzUploadFile[] = [
+//     {
+//       uid: '-1',
+//       name: 'image.png',
+//       status: 'done',
+//       url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
+//     },
+//     {
+//       uid: '-2',
+//       name: 'image.png',
+//       status: 'done',
+//       url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
+//     },
+//     {
+//       uid: '-3',
+//       name: 'image.png',
+//       status: 'done',
+//       url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
+//     },
+//     {
+//       uid: '-4',
+//       name: 'image.png',
+//       status: 'done',
+//       url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
+//     },
+//     {
+//       uid: '-xxx',
+//       percent: 50,
+//       name: 'image.png',
+//       status: 'uploading',
+//       url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
+//     },
+//     {
+//       uid: '-5',
+//       name: 'image.png',
+//       status: 'error'
+//     }
+//   ];
+//   previewImage: string | undefined = '';
+//   previewVisible = false;
+
+//   handlePreview = async (file: NzUploadFile): Promise<void> => {
+//     if (!file.url && !file.preview) {
+//       file.preview = await getBase64(file.originFileObj!);
+//     }
+//     this.previewImage = file.url || file.preview;
+//     this.previewVisible = true;
+//   };
+// }
