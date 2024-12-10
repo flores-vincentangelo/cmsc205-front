@@ -1,9 +1,12 @@
 import { CommonModule, JsonPipe } from '@angular/common';
 import { Component, inject, ViewChild } from '@angular/core';
 import { GoogleMap, MapInfoWindow } from '@angular/google-maps';
-import { PositionService } from '../../services/position.service';
+
+import { InfoWindowComponent } from '../../components/map/info-window/info-window.component';
 import { MarkerComponent } from '../../components/map/marker/marker.component';
 import { ModalComponent } from '../../components/map/modal/modal.component';
+
+import { PositionService } from '../../services/position.service';
 import { ModalService } from '../../services/modal.service';
 @Component({
   standalone: true,
@@ -15,6 +18,7 @@ import { ModalService } from '../../services/modal.service';
     MarkerComponent,
     MapInfoWindow,
     ModalComponent,
+    InfoWindowComponent,
   ],
   templateUrl: './map-page.component.html',
   styleUrl: './map-page.component.css',
