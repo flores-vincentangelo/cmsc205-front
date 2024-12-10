@@ -1,1 +1,39 @@
-<p>knowledge-page works!</p>
+<div class="knowledge-container">
+  <div>
+    <h1 nz-typography>Knowledge</h1>
+  </div>
+  <div>
+    <h2 nz-typography>Water Conservation links</h2>
+    <nz-list nzItemLayout="horizontal">
+      @for (item of conservation; track item) {
+        <nz-list-item>
+          <nz-list-item-meta>
+            <nz-list-item-meta-title>
+              <a href="https://ng.ant.design">{{ item }}</a>
+            </nz-list-item-meta-title>
+          </nz-list-item-meta>
+        </nz-list-item>
+      }
+      @if (conservation.length === 0) {
+        <nz-list-empty />
+      }
+    </nz-list>
+  </div>
+  <div>
+    <h2 nz-typography>Water Sanitation links</h2>
+    <nz-list nzItemLayout="horizontal">
+      @for (item of sanitation; track item) {
+        <nz-list-item>
+          <nz-list-item-meta>
+            <nz-list-item-meta-title>
+              <a href="https://ng.ant.design">{{ item }}</a>
+            </nz-list-item-meta-title>
+          </nz-list-item-meta>
+        </nz-list-item>
+      }
+      @if (sanitation.length === 0) {
+        <nz-list-empty />
+      }
+    </nz-list>
+  </div>
+</div>
