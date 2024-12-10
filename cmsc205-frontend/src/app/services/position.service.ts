@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Marker, MarkerData } from '../models/marker';
 
 @Injectable({
   providedIn: 'root',
@@ -38,11 +39,59 @@ export class PositionService {
     this.currentPosition$.next(position);
   }
 
-  getMarkers(): google.maps.LatLngLiteral[] {
+  getMarkers(): Marker[] {
     return [
-      { lat: 14.63204607870904, lng: 121.02621501232493 },
-      { lat: 14.629056365246745, lng: 121.02909034038889 },
-      { lat: 14.633208734056646, lng: 121.03372519756662 },
+      {
+        markerId: '1',
+        position: { lat: 14.63204607870904, lng: 121.02621501232493 },
+      },
+      {
+        markerId: '2',
+        position: { lat: 14.629056365246745, lng: 121.02909034038889 },
+      },
+      {
+        markerId: '3',
+        position: { lat: 14.633208734056646, lng: 121.03372519756662 },
+      },
     ];
   }
+
+  async getInfoWindowContents(
+    markerId: string,
+  ): Promise<MarkerData | undefined> {
+    const mData = this.markerDataArr.find(
+      (markerData) => markerData.markerId === markerId,
+    );
+    return mData;
+  }
+
+  markerDataArr: MarkerData[] = [
+    {
+      userId: '1',
+      markerId: '1',
+      position: { lat: 14.63204607870904, lng: 121.02621501232493 },
+      description: 'some description',
+      datePosted: '12 10 2024',
+      image:
+        'https://t3.ftcdn.net/jpg/02/74/06/48/360_F_274064877_Tuq84kGOn5nhyIJeUFTUSvXaSeedAOTT.jpg',
+    },
+    {
+      userId: '1',
+      markerId: '2',
+      position: { lat: 14.629056365246745, lng: 121.02909034038889 },
+      description: 'some description',
+      datePosted: '12 10 2024',
+      image:
+        'https://t3.ftcdn.net/jpg/02/74/06/48/360_F_274064877_Tuq84kGOn5nhyIJeUFTUSvXaSeedAOTT.jpg',
+    },
+    {
+      userId: '1',
+      markerId: '3',
+      position: { lat: 14.633208734056646, lng: 121.03372519756662 },
+      description: 'some description',
+      datePosted: '12 10 2024',
+      image:
+        'https://t3.ftcdn.net/jpg/02/74/06/48/360_F_274064877_Tuq84kGOn5nhyIJeUFTUSvXaSeedAOTT.jpg',
+    },
+  ];
 }

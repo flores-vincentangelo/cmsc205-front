@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MapAdvancedMarker } from '@angular/google-maps';
+import { Marker } from '../../../models/marker';
 
 @Component({
   selector: 'app-marker',
@@ -9,7 +10,7 @@ import { MapAdvancedMarker } from '@angular/google-maps';
   styleUrl: './marker.component.css',
 })
 export class MarkerComponent {
-  @Input() position!: google.maps.LatLngLiteral;
+  @Input() markerInput!: Marker;
   @Output() openInfoWindowEvent = new EventEmitter<any>();
 
   markerOptions: google.maps.marker.AdvancedMarkerElementOptions = {
@@ -23,8 +24,8 @@ export class MarkerComponent {
 
   openInfoWindow(marker: MapAdvancedMarker) {
     const emitObj = {
-      marker: marker,
-      position: this.position,
+      markerElement: marker,
+      marker: this.markerInput,
     };
     this.openInfoWindowEvent.emit(emitObj);
   }

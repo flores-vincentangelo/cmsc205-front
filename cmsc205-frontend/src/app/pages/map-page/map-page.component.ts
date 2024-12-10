@@ -1,6 +1,10 @@
 import { CommonModule, JsonPipe } from '@angular/common';
 import { Component, inject, ViewChild } from '@angular/core';
-import { GoogleMap, MapInfoWindow } from '@angular/google-maps';
+import {
+  GoogleMap,
+  MapAdvancedMarker,
+  MapInfoWindow,
+} from '@angular/google-maps';
 
 import { InfoWindowComponent } from '../../components/map/info-window/info-window.component';
 import { MarkerComponent } from '../../components/map/marker/marker.component';
@@ -8,6 +12,9 @@ import { ModalComponent } from '../../components/map/modal/modal.component';
 
 import { PositionService } from '../../services/position.service';
 import { ModalService } from '../../services/modal.service';
+
+import { Marker, MarkerData } from '../../models/marker';
+
 @Component({
   standalone: true,
   selector: 'app-map-page',
@@ -43,10 +50,10 @@ export class MapPageComponent {
   };
 
   markerPositions!: google.maps.LatLngLiteral[];
+  markerArray!: Marker[];
+  markerData!: MarkerData | undefined;
 
   @ViewChild(MapInfoWindow) infoWindow!: MapInfoWindow;
-  infoWindowContents: string = '';
-
   positionInput!: google.maps.LatLngLiteral | null;
 
   async ngOnInit(): Promise<void> {
@@ -67,7 +74,7 @@ export class MapPageComponent {
       this.positionInput = value;
     });
 
-    this.markerPositions = this.ps.getMarkers();
+    this.markerArray = this.ps.getMarkers();
   }
 
   ngAfterViewInit(): void {
@@ -105,8 +112,16 @@ export class MapPageComponent {
     }
   }
 
-  openInfoWindow(object: any) {
-    this.infoWindowContents = `${JSON.stringify(object.position)}`;
-    this.infoWindow.open(object.marker);
+  async openInfoWindow(emitObject: {
+    markerElement: MapAdvancedMarker;
+    marker: Marker;
+  }) {
+    this.markerData = await this.ps.getInfoWindowContents(
+      emitObject.marker.markerId,
+    );
+    if (this.markerData) {
+      this.infoWindow.open(emitObject.markerElement);
+      console.log(emitObject.marker.markerId);
+    }
   }
 }

@@ -9,17 +9,17 @@
     (mapClick)="openInputModal($event)"
     (mapMousemove)="move($event)"
   >
-    @for (position of markerPositions; track position) {
+    @for (marker of markerArray; track marker.markerId) {
       <app-marker
-        [position]="position"
+        [markerInput]="marker"
         (openInfoWindowEvent)="openInfoWindow($event)"
       />
     }
     <map-info-window>
-      {{ infoWindowContents }}
-      <app-info-window></app-info-window>
+      <app-info-window [markerData]="markerData"></app-info-window>
     </map-info-window>
   </google-map>
   <app-modal (formIsSubmitEvent)="addMarker($event)"></app-modal>
 </div>
-{{ markerPositions | json }}
+{{ markerArray | json }}
+{{ markerData | json }}
