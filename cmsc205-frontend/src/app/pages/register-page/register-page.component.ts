@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnDestroy,
-  OnInit,
-  inject,
-  HostListener,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import {
   AbstractControl,
   NonNullableFormBuilder,
@@ -45,9 +39,12 @@ import { Router } from '@angular/router';
 export class RegisterPageComponent implements OnInit, OnDestroy {
   router = inject(Router);
 
+  nzFlexLabel: number | string = '130px';
+
   formLabelSm: number = 10;
   formLabelXs: number = 24;
   formControlSm: number = 14;
+  formControlXs: number = 24;
   registerOffset: number = 0;
   private destroy$ = new Subject<void>();
   private registerService = inject(RegisterService);

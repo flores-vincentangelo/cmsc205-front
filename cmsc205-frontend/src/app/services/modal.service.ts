@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class ModalService {
-  isVisible$ = new BehaviorSubject<boolean>(true);
+  isVisible$ = new BehaviorSubject<boolean>(false);
 
   constructor() {}
 }
