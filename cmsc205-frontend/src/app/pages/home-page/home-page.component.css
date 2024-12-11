@@ -8,33 +8,42 @@
 .app-layout {
   height: 100vh;
   width: 100vw;
+  .menu-sidebar {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+    background-color: var(--white);
+    .sidebar-logo {
+      /* position: relative; */
+      height: 64px;
+      /* padding-left: 24px; */
+      /* overflow: hidden; */
+      /* line-height: 64px; */
+      display: flex;
+      align-items: center;
+      transition: all 0.3s;
+    }
+    ul {
+      background-color: var(--white);
+      font-size: 20px;
+    }
+  }
 }
 
-.menu-sidebar {
-  position: relative;
-  z-index: 10;
-  min-height: 100vh;
-  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
-  background-color: var(--white);
-}
-
-.menu-sidebar ul {
-  background-color: var(--white);
-  font-size: 20px;
-}
-
-.header-trigger {
-  height: 64px;
-  padding: 20px 24px;
-  font-size: 20px;
-  cursor: pointer;
-  transition:
-    all 0.3s,
-    padding 0s;
-}
-
-.trigger:hover {
-  color: #1890ff;
+.layout-content {
+  .header-trigger {
+    height: 64px;
+    padding: 20px 24px;
+    font-size: 20px;
+    cursor: pointer;
+    transition:
+      all 0.3s,
+      padding 0s;
+    .trigger:hover {
+      color: #1890ff;
+    }
+  }
 }
 
 .sidebar-logo {
