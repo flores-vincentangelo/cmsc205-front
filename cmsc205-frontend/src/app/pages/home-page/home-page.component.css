@@ -29,19 +29,19 @@
       font-size: 20px;
     }
   }
-}
-
-.layout-content {
-  .header-trigger {
-    height: 64px;
-    padding: 20px 24px;
-    font-size: 20px;
-    cursor: pointer;
-    transition:
-      all 0.3s,
-      padding 0s;
-    .trigger:hover {
-      color: #1890ff;
+  .layout-content {
+    overflow: scroll;
+    .header-trigger {
+      height: 64px;
+      padding: 20px 24px;
+      font-size: 20px;
+      cursor: pointer;
+      transition:
+        all 0.3s,
+        padding 0s;
+      .trigger:hover {
+        color: #1890ff;
+      }
     }
   }
 }
