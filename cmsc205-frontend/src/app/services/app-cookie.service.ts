@@ -13,6 +13,7 @@ export class AppCookieService {
     if (typeof value === 'string') {
       this.cs.set(key, value);
     } else {
+      console.log(JSON.stringify(value));
       this.cs.set(key, JSON.stringify(value));
     }
   }

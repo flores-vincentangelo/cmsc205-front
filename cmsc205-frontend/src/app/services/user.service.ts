@@ -7,7 +7,13 @@ import { User } from '../models/user';
   providedIn: 'root',
 })
 export class UserService {
-  user$!: BehaviorSubject<User>;
+  user$: BehaviorSubject<User> = new BehaviorSubject<User>({
+    firstname: 'null',
+    lastname: 'null',
+    email: 'null',
+  });
+
+  user!: User;
   firstname$ = new BehaviorSubject<string>('');
   lastname$ = new BehaviorSubject<string>('');
   cs = inject(AppCookieService);
@@ -35,12 +41,19 @@ export class UserService {
     this.lastname$.next(lastname);
   }
 
-  updateUser(): void {
-    const user = <User>this.cs.getCookie('user');
+  updateUser(user: User): void {
     this.user$.next(user);
+    this.cs.setCookie('user', user);
   }
 
-  getUser$(): Observable<User> {
-    return this.user$;
+  getUser(): User {
+    this.user$.subscribe((user: User) => {
+      if (user.firstname === 'null') {
+        this.user$.next(<User>this.cs.getCookie('user'));
+      } else {
+        this.user = user;
+      }
+    });
+    return this.user;
   }
 }

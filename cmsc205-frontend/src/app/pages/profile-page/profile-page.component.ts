@@ -39,8 +39,8 @@ export class ProfilePageComponent {
   us = inject(UserService);
   user!: User;
   fullname: string = '';
-  firstname: string = '';
-  lastname: string = '';
+  // firstname: string = '';
+  // lastname: string = '';
 
   nzFlexLabel: number | string = '150px';
   nzFlexControl: number | string = 'auto';
@@ -59,8 +59,8 @@ export class ProfilePageComponent {
       this.passwordMatchValidator(),
       Validators.required,
     ]),
-    firstname: this.fb.control(this.firstname, []),
-    lastname: this.fb.control(this.lastname, []),
+    firstname: this.fb.control('', []),
+    lastname: this.fb.control('', []),
   });
 
   public screenWidth: any;
@@ -72,6 +72,9 @@ export class ProfilePageComponent {
     this.screenWidth = window.innerWidth - 1;
     this.screenHeight = window.innerHeight;
     this.registerOffset = this.screenWidth >= 576 ? this.formLabelSm : 0;
+
+    this.user = this.us.getUser();
+    this.fullname = `${this.user.firstname} ${this.user.lastname}`;
 
     this.validateForm.controls['checkPassword'].disable();
 
@@ -88,14 +91,9 @@ export class ProfilePageComponent {
         }
       });
 
-    this.us.getUser$().subscribe((user) => {
-      this.user = user;
-      this.firstname = user.firstname;
-      this.lastname = user.lastname;
-      this.fullname = `${user.firstname} ${user.lastname}`;
-    });
-
-    console.log(this.validateForm.value);
+    this.validateForm.controls['firstname'].setValue(this.user.firstname);
+    this.validateForm.controls['lastname'].setValue(this.user.lastname);
+    this.validateForm.controls['email'].setValue(this.user.email);
   }
 
   ngOnDestroy(): void {

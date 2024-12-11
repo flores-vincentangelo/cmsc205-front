@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 
 import { environment } from '../../environments/environment';
 
-import { AppCookieService } from './app-cookie.service';
 import { UserService } from './user.service';
 
 import { User } from '../models/user';
@@ -17,7 +16,6 @@ export class LoginService {
   us = inject(UserService);
   router = inject(Router);
   http = inject(HttpClient);
-  cs = inject(AppCookieService);
   constructor() {}
 
   postLogin(email: string, password: string) {
@@ -39,7 +37,7 @@ export class LoginService {
             firstname: res.firstname,
             lastname: res.lastname,
           };
-          this.cs.setCookie('user', userObj);
+          this.us.updateUser(userObj);
           this.router.navigate(['']);
           // must return firstname, lastname and session jwt
         }
