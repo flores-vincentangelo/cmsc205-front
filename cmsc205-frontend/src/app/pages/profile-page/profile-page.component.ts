@@ -15,6 +15,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzImageModule } from 'ng-zorro-antd/image';
 
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
@@ -30,6 +31,7 @@ import { User } from '../../models/user';
     NzFormModule,
     NzInputModule,
     NzTypographyModule,
+    NzImageModule,
   ],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.css',

@@ -1,19 +1,32 @@
 .profile-container {
   display: flex;
   flex-direction: column;
-}
+  h1 {
+    margin-bottom: 40px;
+  }
 
-.profile-container h1 {
-  margin-bottom: 40px;
-}
+  h2 {
+    margin-bottom: 40px;
+  }
 
-.profile-container h2 {
-  margin-bottom: 40px;
-}
+  .img-form-container {
+    display: flex;
+    flex-direction: row;
 
-.form-container {
-  align-self: center;
-  width: 500px;
+    .profile-img-container {
+      padding: 0 50px;
+      img {
+        object-fit: cover;
+        width: 150px;
+        height: 150px;
+      }
+    }
+
+    .form-container {
+      align-self: center;
+      width: 500px;
+    }
+  }
 }
 
 .ant-select.ant-select-in-form-item.phone-select {
