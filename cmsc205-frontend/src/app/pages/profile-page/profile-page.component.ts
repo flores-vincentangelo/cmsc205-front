@@ -16,8 +16,9 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
-import { SessionService } from '../../services/session.service';
+import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import { User } from '../../models/user';
 
 @Component({
   standalone: true,
@@ -35,8 +36,11 @@ import { Router } from '@angular/router';
 })
 export class ProfilePageComponent {
   router = inject(Router);
-  ss = inject(SessionService);
-  fullname = this.ss.getFullname();
+  us = inject(UserService);
+  user!: User;
+  fullname: string = '';
+  firstname: string = '';
+  lastname: string = '';
 
   nzFlexLabel: number | string = '150px';
   nzFlexControl: number | string = 'auto';
@@ -55,9 +59,8 @@ export class ProfilePageComponent {
       this.passwordMatchValidator(),
       Validators.required,
     ]),
-    firstname: this.fb.control('', []),
-    lastname: this.fb.control('', []),
-    agree: this.fb.control(false),
+    firstname: this.fb.control(this.firstname, []),
+    lastname: this.fb.control(this.lastname, []),
   });
 
   public screenWidth: any;
@@ -84,6 +87,15 @@ export class ProfilePageComponent {
           this.validateForm.controls['checkPassword'].disable();
         }
       });
+
+    this.us.getUser$().subscribe((user) => {
+      this.user = user;
+      this.firstname = user.firstname;
+      this.lastname = user.lastname;
+      this.fullname = `${user.firstname} ${user.lastname}`;
+    });
+
+    console.log(this.validateForm.value);
   }
 
   ngOnDestroy(): void {

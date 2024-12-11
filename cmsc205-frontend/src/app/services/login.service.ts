@@ -1,22 +1,48 @@
 import { inject, Injectable } from '@angular/core';
-import { SessionService } from './session.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+
+import { environment } from '../../environments/environment';
+
+import { AppCookieService } from './app-cookie.service';
+import { UserService } from './user.service';
+
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  ss = inject(SessionService);
+  private API_URL = environment.API_URL;
+  us = inject(UserService);
   router = inject(Router);
+  http = inject(HttpClient);
+  cs = inject(AppCookieService);
   constructor() {}
 
-  postLogin(username: string, password: string) {
-    console.log(username, password);
-    // this.http.post<any>(url, body, options: {headers})
-    // must return firstname, lastname and session jwt
-
-    this.ss.updateFirstName('Vincent Angelo');
-    this.ss.updateLastname('Flores');
-    this.router.navigate(['']);
+  postLogin(email: string, password: string) {
+    const base64Creds = btoa(`${email}:${password}`);
+    let httpHeaders: HttpHeaders = new HttpHeaders();
+    httpHeaders = httpHeaders.append('Content-Type', 'application/json');
+    httpHeaders = httpHeaders.append('Authorization', `Basic ${base64Creds}`);
+    this.http
+      .post<any>(this.API_URL + 'login', null, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Basic ${base64Creds}`,
+        },
+      })
+      .subscribe((res) => {
+        if (res.status === 200) {
+          const userObj: User = {
+            email: res.email,
+            firstname: res.firstname,
+            lastname: res.lastname,
+          };
+          this.cs.setCookie('user', userObj);
+          this.router.navigate(['']);
+          // must return firstname, lastname and session jwt
+        }
+      });
   }
 }
