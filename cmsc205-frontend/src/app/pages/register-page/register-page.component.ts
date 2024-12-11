@@ -40,9 +40,6 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
   router = inject(Router);
 
   nzFlexLabel: number | string = '130px';
-
-  formLabelSm: number = 10;
-  formLabelXs: number = 24;
   formControlSm: number = 24;
   formControlXs: number = 24;
   private destroy$ = new Subject<void>();

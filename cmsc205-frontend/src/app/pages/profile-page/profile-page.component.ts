@@ -47,10 +47,8 @@ export class ProfilePageComponent {
   nzFlexLabel: number | string = '150px';
   nzFlexControl: number | string = 'auto';
 
-  formLabelSm: number = 10;
-  formLabelXs: number = 24;
-  formControlSm: number = 14;
-  registerOffset: number = 0;
+  formControlSm: number = 25;
+  formControlMd: number = 24;
   private destroy$ = new Subject<void>();
 
   private fb = inject(NonNullableFormBuilder);
@@ -73,7 +71,6 @@ export class ProfilePageComponent {
   ngOnInit(): void {
     this.screenWidth = window.innerWidth - 1;
     this.screenHeight = window.innerHeight;
-    this.registerOffset = this.screenWidth >= 576 ? this.formLabelSm : 0;
 
     this.user = this.us.getUser();
     this.fullname = `${this.user.firstname} ${this.user.lastname}`;
