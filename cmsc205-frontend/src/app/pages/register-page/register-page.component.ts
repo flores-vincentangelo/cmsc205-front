@@ -43,9 +43,8 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
 
   formLabelSm: number = 10;
   formLabelXs: number = 24;
-  formControlSm: number = 14;
+  formControlSm: number = 24;
   formControlXs: number = 24;
-  registerOffset: number = 0;
   private destroy$ = new Subject<void>();
   private registerService = inject(RegisterService);
 
@@ -70,7 +69,6 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.screenWidth = window.innerWidth - 1;
     this.screenHeight = window.innerHeight;
-    this.registerOffset = this.screenWidth >= 576 ? this.formLabelSm : 0;
 
     this.validateForm.controls['password'].valueChanges
       .pipe(takeUntil(this.destroy$))

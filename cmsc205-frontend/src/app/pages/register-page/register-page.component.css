@@ -1,13 +1,26 @@
-.formcontrol {
-  background-color: red;
-  display: flex;
-  justify-content: center;
-}
-
-.ant-select.ant-select-in-form-item.phone-select {
+/* .ant-select.ant-select-in-form-item.phone-select {
   width: 80px;
 }
 
 .register-area {
   margin-bottom: 8px;
+} */
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+
+  .form-container {
+    width: 500px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .register-container {
+    .form-container {
+      width: 95%;
+    }
+  }
 }

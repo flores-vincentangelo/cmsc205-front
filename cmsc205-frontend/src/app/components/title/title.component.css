@@ -3,3 +3,9 @@
   color: var(--primary-blue);
   margin-bottom: 50px;
 }
+
+@media only screen and (max-width: 576px) {
+  .title {
+    font-size: 15vw;
+  }
+}
