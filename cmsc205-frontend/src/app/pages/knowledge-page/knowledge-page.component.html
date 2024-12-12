@@ -5,11 +5,11 @@
   <div>
     <h2 nz-typography>Water Conservation links</h2>
     <nz-list nzItemLayout="horizontal">
-      @for (item of conservation; track item) {
+      @for (source of conservation; track source) {
         <nz-list-item>
           <nz-list-item-meta>
             <nz-list-item-meta-title>
-              <a href="https://ng.ant.design">{{ item }}</a>
+              <a [href]="source.link" target="_blank">{{ source.title }}</a>
             </nz-list-item-meta-title>
           </nz-list-item-meta>
         </nz-list-item>
@@ -22,11 +22,11 @@
   <div>
     <h2 nz-typography>Water Sanitation links</h2>
     <nz-list nzItemLayout="horizontal">
-      @for (item of sanitation; track item) {
+      @for (source of sanitation; track source) {
         <nz-list-item>
           <nz-list-item-meta>
             <nz-list-item-meta-title>
-              <a href="https://ng.ant.design">{{ item }}</a>
+              <a [href]="source.link" target="_blank">{{ source.title }}</a>
             </nz-list-item-meta-title>
           </nz-list-item-meta>
         </nz-list-item>
