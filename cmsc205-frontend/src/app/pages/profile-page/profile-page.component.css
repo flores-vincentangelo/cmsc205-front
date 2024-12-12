@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  padding-bottom: 50px;
   h1 {
     margin-bottom: 40px;
   }
@@ -53,3 +54,5 @@
 /* .ant-select.ant-select-in-form-item.phone-select {
   width: 80px;
 } */
+
+/* .ant-form-item-control-input-content:has(> .form-button) { */

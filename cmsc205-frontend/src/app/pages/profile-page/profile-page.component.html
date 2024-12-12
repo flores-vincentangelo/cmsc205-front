@@ -90,14 +90,30 @@
           </nz-form-control>
         </nz-form-item>
         <nz-form-item nz-row nzJustify="center">
-          <nz-form-control [nzMd]="1">
-            <button nz-button nzType="primary">Update</button>
+          <div nz-col [nzFlex]="1"></div>
+          <nz-form-control nz-col [nzFlex]="1">
+            <button nz-button nzType="primary" class="formButton">
+              Update
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-row nzJustify="center">
+          <div nz-col [nzFlex]="1"></div>
+          <nz-form-control [nzFlex]="1">
+            <button
+              nz-button
+              nzType="primary"
+              class="formButton"
+              (click)="signOut()"
+            >
+              Sign out
+            </button>
           </nz-form-control>
         </nz-form-item>
       </form>
     </div>
   </div>
-  <div class="signout-container">
+  <!-- <div class="signout-container">
     <button nz-button nzType="primary" (click)="signOut()">Sign out</button>
-  </div>
+  </div> -->
 </div>
