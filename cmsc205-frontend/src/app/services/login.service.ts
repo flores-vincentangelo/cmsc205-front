@@ -33,12 +33,11 @@ export class LoginService {
       .subscribe((res) => {
         if (res.status === 200) {
           const userObj: User = {
-            email: res.email,
-            firstname: res.firstname,
-            lastname: res.lastname,
-            picture: 'DSC_0017.JPG',
+            email: res.user.Email,
+            firstname: res.user.FirstName,
+            lastname: res.user.LastName,
+            picture: res.user.Picture,
           };
-
           this.us.updateUser(userObj);
           this.router.navigate(['']);
           // must return firstname, lastname and session jwt

@@ -7,6 +7,7 @@ export interface MarkerData extends Marker {
   image: any;
   datePosted: string;
   description: string;
-  userId: string;
+  userEmail: string;
   state: string;
+  userFullname: string;
 }

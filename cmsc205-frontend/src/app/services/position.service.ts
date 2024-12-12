@@ -59,7 +59,7 @@ export class PositionService {
 
   markerDataArr: MarkerData[] = [
     {
-      userId: '1',
+      userEmail: 'vincentflores88@gmail.com',
       state: 'clean',
       markerId: '1',
       position: { lat: 14.63204607870904, lng: 121.02621501232493 },
@@ -67,9 +67,10 @@ export class PositionService {
       datePosted: '12 10 2024',
       image:
         'https://t3.ftcdn.net/jpg/02/74/06/48/360_F_274064877_Tuq84kGOn5nhyIJeUFTUSvXaSeedAOTT.jpg',
+      userFullname: 'Vincent Angelo Flores',
     },
     {
-      userId: '1',
+      userEmail: 'vincentflores88@gmail.com',
       state: 'clean',
       markerId: '2',
       position: { lat: 14.629056365246745, lng: 121.02909034038889 },
@@ -78,9 +79,10 @@ export class PositionService {
       datePosted: '12 10 2024',
       image:
         'https://t3.ftcdn.net/jpg/02/74/06/48/360_F_274064877_Tuq84kGOn5nhyIJeUFTUSvXaSeedAOTT.jpg',
+      userFullname: 'Vincent Angelo Flores',
     },
     {
-      userId: '1',
+      userEmail: 'vincentflores88@gmail.com',
       state: 'clean',
       markerId: '3',
       position: { lat: 14.633208734056646, lng: 121.03372519756662 },
@@ -88,6 +90,7 @@ export class PositionService {
       datePosted: '12 10 2024',
       image:
         'https://t3.ftcdn.net/jpg/02/74/06/48/360_F_274064877_Tuq84kGOn5nhyIJeUFTUSvXaSeedAOTT.jpg',
+      userFullname: 'Vincent Angelo Flores',
     },
   ];
 }
