@@ -13,4 +13,8 @@ export class InfoWindowComponent {
   @Input() markerData!: MarkerData | undefined;
   imgSrc: string =
     'https://t3.ftcdn.net/jpg/02/74/06/48/360_F_274064877_Tuq84kGOn5nhyIJeUFTUSvXaSeedAOTT.jpg';
+
+  markerUserImg(): string {
+    return this.markerData?.userImage ? this.markerData.userImage : this.imgSrc;
+  }
 }

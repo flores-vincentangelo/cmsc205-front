@@ -13,9 +13,9 @@
     </div>
     <div class="account-container">
       <div class="account-img-container">
-        <img nz-image [nzSrc]="markerData?.image" alt="" />
+        <img nz-image [nzSrc]="markerUserImg()" alt="" />
       </div>
-      <div class="account-name-container">Juan DelaCruz</div>
+      <div class="account-name-container">{{ markerData?.userFullname }}</div>
     </div>
   </div>
 </div>

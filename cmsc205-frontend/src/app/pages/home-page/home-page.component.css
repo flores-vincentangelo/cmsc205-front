@@ -30,7 +30,8 @@
     }
   }
   .layout-content {
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     .header-trigger {
       height: 64px;
       padding: 20px 24px;

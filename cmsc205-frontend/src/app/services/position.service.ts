@@ -1,11 +1,19 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
+
 import { Marker, MarkerData } from '../models/marker';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PositionService {
+  private API_URL = environment.API_URL;
+  http = inject(HttpClient);
+
+  markerDataArr!: MarkerData[];
+
   currentPosition$ = new BehaviorSubject<google.maps.LatLngLiteral>({
     lat: 0,
     lng: 0,
@@ -39,13 +47,35 @@ export class PositionService {
     this.currentPosition$.next(position);
   }
 
-  getMarkers(): Marker[] {
-    return this.markerDataArr.map((markerData) => {
-      return {
-        markerId: markerData.markerId,
-        position: markerData.position,
-      };
-    });
+  getMarkers(): Observable<Marker[]> {
+    return this.http.get<any>(this.API_URL + 'markers').pipe(
+      tap((x) => console.log(x.markers)),
+      map((res) => {
+        let markerLikeArr: [] = res.markers;
+        const markerArr: MarkerData[] = markerLikeArr.map((mLike: any) => {
+          const mm: MarkerData = {
+            markerId: mLike.MarkerId,
+            position: { lat: mLike.Lat, lng: mLike.Lng },
+            image: mLike.Image,
+            datePosted: mLike.DatePosted,
+            description: mLike.Description,
+            userEmail: mLike.UserEmail,
+            state: mLike.State,
+            userFullname: mLike.UserFullName,
+            userImage: mLike.UserImage,
+          };
+          return mm;
+        });
+        this.markerDataArr = markerArr;
+        return markerArr;
+      }),
+    );
+    // return this.markerDataArr.map((markerData) => {
+    //   return {
+    //     markerId: markerData.markerId,
+    //     position: markerData.position,
+    //   };
+    // });
   }
 
   async getInfoWindowContents(
@@ -56,41 +86,4 @@ export class PositionService {
     );
     return mData;
   }
-
-  markerDataArr: MarkerData[] = [
-    {
-      userEmail: 'vincentflores88@gmail.com',
-      state: 'clean',
-      markerId: '1',
-      position: { lat: 14.63204607870904, lng: 121.02621501232493 },
-      description: `When you land on a sample web page or open an email template and see content beginning with "lorem ipsum," the page creator placed that apparent gibberish there on purpose. Page layouts look better with something in each section. Web page designers, content writers, and layout artists use lorem ipsum, also known as placeholder copy, to distinguish which areas on a page will hold advertisements, editorials, and filler before the final written content and website designs receive client approval. Fun Lorem Ipsum text may appear in any size and font to simulate everything you create for your campaigns.`,
-      datePosted: '12 10 2024',
-      image:
-        'https://t3.ftcdn.net/jpg/02/74/06/48/360_F_274064877_Tuq84kGOn5nhyIJeUFTUSvXaSeedAOTT.jpg',
-      userFullname: 'Vincent Angelo Flores',
-    },
-    {
-      userEmail: 'vincentflores88@gmail.com',
-      state: 'clean',
-      markerId: '2',
-      position: { lat: 14.629056365246745, lng: 121.02909034038889 },
-      description: `When you land on a sample web page or open an email template and see content beginning with "lorem ipsum," the page creator placed that apparent gibberish there on purpose. Page layouts look better with something in each section. Web page designers, content writers, and layout artists use lorem ipsum, also known as placeholder copy, to distinguish which areas on a page will hold advertisements, editorials, and filler before the final written content and website designs receive client approval. Fun Lorem Ipsum text may appear in any size and font to simulate everything you create for your campaigns.`,
-
-      datePosted: '12 10 2024',
-      image:
-        'https://t3.ftcdn.net/jpg/02/74/06/48/360_F_274064877_Tuq84kGOn5nhyIJeUFTUSvXaSeedAOTT.jpg',
-      userFullname: 'Vincent Angelo Flores',
-    },
-    {
-      userEmail: 'vincentflores88@gmail.com',
-      state: 'clean',
-      markerId: '3',
-      position: { lat: 14.633208734056646, lng: 121.03372519756662 },
-      description: `When you land on a sample web page or open an email template and see content beginning with "lorem ipsum," the page creator placed that apparent gibberish there on purpose. Page layouts look better with something in each section. Web page designers, content writers, and layout artists use lorem ipsum, also known as placeholder copy, to distinguish which areas on a page will hold advertisements, editorials, and filler before the final written content and website designs receive client approval. Fun Lorem Ipsum text may appear in any size and font to simulate everything you create for your campaigns.`,
-      datePosted: '12 10 2024',
-      image:
-        'https://t3.ftcdn.net/jpg/02/74/06/48/360_F_274064877_Tuq84kGOn5nhyIJeUFTUSvXaSeedAOTT.jpg',
-      userFullname: 'Vincent Angelo Flores',
-    },
-  ];
 }

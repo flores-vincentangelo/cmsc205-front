@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-
 import { environment } from '../../environments/environment';
 
 import { UserService } from './user.service';
@@ -20,9 +19,6 @@ export class LoginService {
 
   postLogin(email: string, password: string) {
     const base64Creds = btoa(`${email}:${password}`);
-    let httpHeaders: HttpHeaders = new HttpHeaders();
-    httpHeaders = httpHeaders.append('Content-Type', 'application/json');
-    httpHeaders = httpHeaders.append('Authorization', `Basic ${base64Creds}`);
     this.http
       .post<any>(this.API_URL + 'login', null, {
         headers: {
