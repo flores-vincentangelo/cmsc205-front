@@ -32,6 +32,10 @@
   .layout-content {
     overflow-y: scroll;
     overflow-x: hidden;
+    .ant-layout-content {
+      padding: 0;
+      margin: 0;
+    }
     .header-trigger {
       height: 64px;
       padding: 20px 24px;
@@ -124,7 +128,7 @@ nz-content {
 }
 
 .inner-content {
-  padding: 24px;
+  /* padding: 24px; */
   background: #fff;
   height: 100%;
 }
