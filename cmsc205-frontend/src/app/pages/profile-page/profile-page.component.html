@@ -5,11 +5,7 @@
   </div>
   <div class="img-form-container">
     <div class="profile-img-container">
-      <img
-        nz-image
-        nzSrc="https://t3.ftcdn.net/jpg/02/74/06/48/360_F_274064877_Tuq84kGOn5nhyIJeUFTUSvXaSeedAOTT.jpg"
-        alt=""
-      />
+      <img nz-image [nzSrc]="user.picture" alt="" />
     </div>
     <div class="form-container">
       <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">

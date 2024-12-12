@@ -36,7 +36,9 @@ export class LoginService {
             email: res.email,
             firstname: res.firstname,
             lastname: res.lastname,
+            picture: 'DSC_0017.JPG',
           };
+
           this.us.updateUser(userObj);
           this.router.navigate(['']);
           // must return firstname, lastname and session jwt

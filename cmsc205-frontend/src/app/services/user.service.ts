@@ -11,6 +11,7 @@ export class UserService {
     firstname: 'null',
     lastname: 'null',
     email: 'null',
+    picture: 'null',
   });
 
   user!: User;
