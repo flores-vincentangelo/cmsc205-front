@@ -13,7 +13,7 @@ import { ModalComponent } from '../../components/map/modal/modal.component';
 import { PositionService } from '../../services/position.service';
 import { ModalService } from '../../services/modal.service';
 
-import { Marker, MarkerData } from '../../models/marker';
+import { MarkerData } from '../../models/marker';
 
 @Component({
   standalone: true,
@@ -49,7 +49,7 @@ export class MapPageComponent {
   };
 
   markerPositions!: google.maps.LatLngLiteral[];
-  markerArray!: Marker[] | [];
+  markerArray!: MarkerData[] | [];
   markerData!: MarkerData | undefined;
 
   @ViewChild(MapInfoWindow) infoWindow!: MapInfoWindow;
@@ -115,14 +115,9 @@ export class MapPageComponent {
 
   async openInfoWindow(emitObject: {
     markerElement: MapAdvancedMarker;
-    marker: Marker;
+    marker: MarkerData;
   }) {
-    this.markerData = await this.ps.getInfoWindowContents(
-      emitObject.marker.markerId,
-    );
-    if (this.markerData) {
-      this.infoWindow.open(emitObject.markerElement);
-      console.log(emitObject.marker.markerId);
-    }
+    this.markerData = emitObject.marker;
+    this.infoWindow.open(emitObject.markerElement);
   }
 }

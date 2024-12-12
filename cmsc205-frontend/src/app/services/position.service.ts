@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-import { Marker, MarkerData } from '../models/marker';
+import { MarkerData } from '../models/marker';
 
 @Injectable({
   providedIn: 'root',
@@ -47,9 +47,9 @@ export class PositionService {
     this.currentPosition$.next(position);
   }
 
-  getMarkers(): Observable<Marker[]> {
+  getMarkers(): Observable<MarkerData[]> {
     return this.http.get<any>(this.API_URL + 'markers').pipe(
-      tap((x) => console.log(x.markers)),
+      // tap((x) => console.log(x.markers)),
       map((res) => {
         let markerLikeArr: [] = res.markers;
         const markerArr: MarkerData[] = markerLikeArr.map((mLike: any) => {

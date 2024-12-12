@@ -1,9 +1,6 @@
-export interface Marker {
+export interface MarkerData {
   markerId: string;
   position: google.maps.LatLngLiteral;
-}
-
-export interface MarkerData extends Marker {
   image: any;
   datePosted: string;
   description: string;
