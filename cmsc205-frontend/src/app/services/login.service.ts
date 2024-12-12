@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.development';
 
 import { UserService } from './user.service';
 
@@ -19,6 +19,7 @@ export class LoginService {
 
   postLogin(email: string, password: string) {
     const base64Creds = btoa(`${email}:${password}`);
+    console.log(this.API_URL);
     this.http
       .post<any>(this.API_URL + 'login', null, {
         headers: {
