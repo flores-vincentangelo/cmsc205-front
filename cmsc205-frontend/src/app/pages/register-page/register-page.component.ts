@@ -8,13 +8,14 @@ import {
   ValidatorFn,
 } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { catchError, takeUntil } from 'rxjs/operators';
 
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { TitleComponent } from '../../components/title/title.component';
 
@@ -38,6 +39,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterPageComponent implements OnInit, OnDestroy {
   router = inject(Router);
+  message = inject(NzMessageService);
 
   nzFlexLabel: number | string = '130px';
   formControlSm: number = 24;
@@ -81,7 +83,23 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      const res = this.registerService.register(this.validateForm.value);
+      this.registerService
+        .register(this.validateForm.value)
+
+        .subscribe({
+          next: (res) => {
+            console.log(res);
+            if (res.status === 201) {
+              this.router.navigate(['login']);
+            }
+          },
+          error: (err) => {
+            if (err.status === 409) {
+              console.log(err);
+              this.message.create('error', err.error.message);
+            }
+          },
+        });
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
