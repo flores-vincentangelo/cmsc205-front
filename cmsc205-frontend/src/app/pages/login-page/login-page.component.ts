@@ -76,6 +76,7 @@ export class LoginPageComponent {
               };
               console.log(userObj);
               this.us.updateUser(userObj);
+              this.loginService.setLoggedInStatus(true);
               this.router.navigate(['']);
               // must return firstname, lastname and session jwt
             }

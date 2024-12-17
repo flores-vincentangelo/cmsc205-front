@@ -14,6 +14,7 @@ export class LoginService {
   us = inject(UserService);
   router = inject(Router);
   http = inject(HttpClient);
+  isLoggedIn = false;
   constructor() {}
 
   postLogin(email: string, password: string): Observable<any> {
@@ -24,5 +25,13 @@ export class LoginService {
         Authorization: `Basic ${base64Creds}`,
       },
     });
+  }
+
+  setLoggedInStatus(isLoggedIn: boolean): void {
+    this.isLoggedIn = isLoggedIn;
+  }
+
+  isAuthenticated() {
+    return this.isLoggedIn;
   }
 }

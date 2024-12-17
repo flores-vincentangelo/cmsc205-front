@@ -5,6 +5,7 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/map' },
@@ -26,6 +27,7 @@ export const routes: Routes = [
       },
       { path: 'profile', component: ProfilePageComponent, title: 'Profile' },
     ],
+    canActivate: [authGuard],
   },
   {
     path: 'login',

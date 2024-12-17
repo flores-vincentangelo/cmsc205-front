@@ -17,6 +17,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzImageModule } from 'ng-zorro-antd/image';
 
+import { LoginService } from '../../services/login.service';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
@@ -39,6 +40,7 @@ import { User } from '../../models/user';
 export class ProfilePageComponent {
   router = inject(Router);
   us = inject(UserService);
+  ls = inject(LoginService);
   user!: User;
   fullname: string = '';
   // firstname: string = '';
@@ -128,7 +130,7 @@ export class ProfilePageComponent {
   }
 
   signOut(): void {
-    console.log('clicked');
+    this.ls.setLoggedInStatus(false);
     this.router.navigate(['login']);
   }
 }
