@@ -4,8 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from '../../environments/environment.development';
 
 import { UserService } from './user.service';
-
-import { User } from '../models/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,28 +16,13 @@ export class LoginService {
   http = inject(HttpClient);
   constructor() {}
 
-  postLogin(email: string, password: string) {
+  postLogin(email: string, password: string): Observable<any> {
     const base64Creds = btoa(`${email}:${password}`);
-    console.log(this.API_URL);
-    this.http
-      .post<any>(this.API_URL + 'login', null, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Basic ${base64Creds}`,
-        },
-      })
-      .subscribe((res) => {
-        if (res.status === 200) {
-          const userObj: User = {
-            email: res.user.Email,
-            firstname: res.user.FirstName,
-            lastname: res.user.LastName,
-            picture: res.user.Picture,
-          };
-          this.us.updateUser(userObj);
-          this.router.navigate(['']);
-          // must return firstname, lastname and session jwt
-        }
-      });
+    return this.http.post<any>(this.API_URL + 'login', null, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${base64Creds}`,
+      },
+    });
   }
 }

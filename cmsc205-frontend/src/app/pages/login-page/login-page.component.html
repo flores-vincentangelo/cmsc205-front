@@ -7,7 +7,7 @@
     (ngSubmit)="submitForm()"
   >
     <nz-form-item>
-      <nz-form-control nzErrorTip="Please input your email!">
+      <nz-form-control [nzErrorTip]="errorEmail">
         <nz-input-group nzPrefixIcon="user">
           <input
             type="text"
@@ -15,11 +15,27 @@
             formControlName="email"
             placeholder="Email"
           />
+          <ng-template #errorEmail let-control>
+            @if (
+              validateForm.controls["email"].errors?.["email"] && !invalidCreds
+            ) {
+              The input is not valid E-mail!
+            }
+            @if (
+              validateForm.controls["email"].errors?.["required"] &&
+              !invalidCreds
+            ) {
+              Please input your email!
+            }
+            @if (invalidCreds) {
+              Invalid credentials
+            }
+          </ng-template>
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-control nzErrorTip="Please input your Password!">
+      <nz-form-control [nzErrorTip]="errorPass">
         <nz-input-group nzPrefixIcon="lock">
           <input
             type="password"
@@ -27,6 +43,17 @@
             formControlName="password"
             placeholder="Password"
           />
+          <ng-template #errorPass let-control>
+            @if (
+              validateForm.controls["password"].errors?.["required"] &&
+              !invalidCreds
+            ) {
+              Please input your Password!
+            }
+            @if (invalidCreds) {
+              Invalid credentials
+            }
+          </ng-template>
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>

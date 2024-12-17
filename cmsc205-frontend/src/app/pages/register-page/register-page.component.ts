@@ -88,9 +88,8 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
 
         .subscribe({
           next: (res) => {
-            console.log(res);
             if (res.status === 201) {
-              this.router.navigate(['login']);
+              this.router.navigate(['/login']);
             }
           },
           error: (err) => {
